@@ -6,8 +6,8 @@ var Nav = React.createClass({
         return (
             <div id="nav">
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/hello-world">Hello world</Link></li>
+                    <li><Link to="/">Hello world</Link></li>
+                    <li><Link to="/count">Count</Link></li>
                 </ul>
                 <div className="clear"/>
             </div>

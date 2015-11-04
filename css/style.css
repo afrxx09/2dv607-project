@@ -6,6 +6,10 @@ body{
     background-color:#f6f6f6;
 }
 
+button {
+    padding:5px 40px;
+}
+
 .clear{
     clear:both;
 }

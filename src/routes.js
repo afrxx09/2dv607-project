@@ -3,12 +3,12 @@ var React = require('react'),
     Route = ReactRouter.Route,
     IndexRoute = ReactRouter.IndexRoute,
     Wrap = require('./components/wrap');
-    Home = require('./components/home');
-    HelloWorld = require('./components/hello-world');
+    HelloWorld = require('./components/hello-world'),
+    Count = require('./components/count');
 
 module.exports = (
     <Route path='/' component={Wrap}>
-        <IndexRoute component={Home}/>
-        <Route path='/hello-world' component={HelloWorld}/>
+        <IndexRoute component={HelloWorld}/>
+        <Route path='/count' component={Count}/>
     </Route>
 );
