@@ -1,0 +1,24 @@
+{
+    "routes" : [
+        {
+            "path": "/",
+            "component": "Home",
+            "title": "Home"
+        },
+        {
+            "path": "/path2",
+            "component": "Home",
+            "title": "Path 2"
+        },
+        {
+            "path": "/path3",
+            "component": "Home",
+            "title": "Path 3"
+        },
+        {
+            "path": "/path4",
+            "component": "Home",
+            "title": "Path 4"
+        }
+    ]
+}
