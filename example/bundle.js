@@ -26,7 +26,7 @@ var App = _react2.default.createClass({
                 null,
                 'App'
             ),
-            _react2.default.createElement(_index2.default, { routes: this.props.children }),
+            _react2.default.createElement(_index2.default, { routes: this.props.routes }),
             this.props.children
         );
     }
@@ -89,15 +89,15 @@ var Info4 = _react2.default.createClass({
     _react2.default.createElement(
         _reactRouter.Route,
         { path: '/', component: App },
-        _react2.default.createElement(_reactRouter.IndexRoute, { component: Home }),
+        _react2.default.createElement(_reactRouter.IndexRoute, { component: Home, title: 'da home' }),
         _react2.default.createElement(_reactRouter.Route, { path: 'info1', component: Info1 }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'info2', component: Info2 }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'info2', component: Info2, title: 'asd 2s' }),
         _react2.default.createElement(_reactRouter.Route, { path: 'info3', component: Info3 }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'info4', component: Info4 })
+        _react2.default.createElement(_reactRouter.Route, { path: 'info4', component: Info4, title: 'asd 4' })
     )
 ), document.getElementById('app'));
 
-},{"./../../src/index.jsx":212,"react":210,"react-dom":28,"react-router":48}],2:[function(require,module,exports){
+},{"./../../src/index.jsx":214,"react":210,"react-dom":28,"react-router":48}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -23649,7 +23649,120 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//import MyNavLinks from './my-nav-links.jsx';
+var MyNavLink = (function (_Component) {
+    _inherits(MyNavLink, _Component);
+
+    function MyNavLink() {
+        _classCallCheck(this, MyNavLink);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(MyNavLink).apply(this, arguments));
+    }
+
+    _createClass(MyNavLink, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: this.props.link.href },
+                    this.props.link.title
+                )
+            );
+        }
+    }]);
+
+    return MyNavLink;
+})(_react.Component);
+
+exports.default = MyNavLink;
+
+},{"react":210,"react-router":48}],212:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _myNavLink = require('./my-nav-link.jsx');
+
+var _myNavLink2 = _interopRequireDefault(_myNavLink);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MyNavLinks = (function (_Component) {
+    _inherits(MyNavLinks, _Component);
+
+    function MyNavLinks() {
+        _classCallCheck(this, MyNavLinks);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(MyNavLinks).apply(this, arguments));
+    }
+
+    _createClass(MyNavLinks, [{
+        key: 'render',
+        value: function render() {
+
+            var myNavLinks = this.props.links.map(function (link, n) {
+                return _react2.default.createElement(_myNavLink2.default, { key: n, link: link });
+            });
+
+            return _react2.default.createElement(
+                'ul',
+                null,
+                myNavLinks
+            );
+        }
+    }]);
+
+    return MyNavLinks;
+})(_react.Component);
+
+exports.default = MyNavLinks;
+
+},{"./my-nav-link.jsx":211,"react":210,"react-router":48}],213:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _myNavLinks = require('./my-nav-links.jsx');
+
+var _myNavLinks2 = _interopRequireDefault(_myNavLinks);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var MyNav = (function (_Component) {
     _inherits(MyNav, _Component);
@@ -23663,17 +23776,30 @@ var MyNav = (function (_Component) {
     _createClass(MyNav, [{
         key: 'render',
         value: function render() {
-            var routes = this.props.routes || [];
-            console.log((0, _reactRouter.createRoutes)(routes));
-            /*
-            let links = this.props.routes.routes.map(function(route){
-                return {
-                    href: route.path,
-                    title: route.title
+            var routes = this.props.routes[0] || [];
+            var indexRoute = routes.indexRoute || null;
+            var childRoutes = routes.childRoutes || null;
+            var links = [];
+            if (indexRoute) {
+                links.push({
+                    href: routes.path,
+                    title: indexRoute.title || indexRoute.component.displayName
+                });
+            }
+            if (childRoutes && childRoutes.length > 0) {
+                for (var i = 0; i < childRoutes.length; i++) {
+                    var child = childRoutes[i];
+                    links.push({
+                        href: child.path,
+                        title: child.title || child.component.displayName || child.component.name
+                    });
                 }
-            });
-            */
-            return _react2.default.createElement('div', { id: 'nav' });
+            }
+            return _react2.default.createElement(
+                'div',
+                { id: 'nav' },
+                _react2.default.createElement(_myNavLinks2.default, { links: links })
+            );
         }
     }]);
 
@@ -23682,7 +23808,7 @@ var MyNav = (function (_Component) {
 
 exports.default = MyNav;
 
-},{"react":210,"react-router":48}],212:[function(require,module,exports){
+},{"./my-nav-links.jsx":212,"react":210,"react-router":48}],214:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23697,4 +23823,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _myNav2.default;
 
-},{"./components/my-nav.jsx":211}]},{},[1]);
+},{"./components/my-nav.jsx":213}]},{},[1]);

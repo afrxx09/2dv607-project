@@ -8,7 +8,7 @@ const App = React.createClass({
         return(
             <div id="wrap">
                 <h1>App</h1>
-                <MyNav routes={this.props.children}/>
+                <MyNav routes={this.props.routes}/>
                 {this.props.children}
             </div>
         );
@@ -54,11 +54,11 @@ const Info4 = React.createClass({
 render(
     <Router>
         <Route path='/' component={App}>
-            <IndexRoute component={Home}/>
+            <IndexRoute component={Home} title="da home"/>
             <Route path='info1' component={Info1}/>
-            <Route path='info2' component={Info2}/>
+            <Route path='info2' component={Info2} title="asd 2s"/>
             <Route path='info3' component={Info3}/>
-            <Route path='info4' component={Info4}/>
+            <Route path='info4' component={Info4} title="asd 4"/>
         </Route>
     </Router>,
     document.getElementById('app')
