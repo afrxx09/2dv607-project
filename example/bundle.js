@@ -97,7 +97,7 @@ var Info4 = _react2.default.createClass({
     )
 ), document.getElementById('app'));
 
-},{"./../../src/index.jsx":214,"react":210,"react-dom":28,"react-router":48}],2:[function(require,module,exports){
+},{"./../../src/index.jsx":215,"react":210,"react-dom":28,"react-router":48}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -23661,13 +23661,15 @@ var MyNavLink = (function (_Component) {
     _createClass(MyNavLink, [{
         key: 'render',
         value: function render() {
+            var href = this.props.link.href,
+                title = this.props.link.title;
             return _react2.default.createElement(
                 'li',
                 null,
                 _react2.default.createElement(
                     _reactRouter.Link,
-                    { to: this.props.link.href },
-                    this.props.link.title
+                    { to: href },
+                    title
                 )
             );
         }
@@ -23690,8 +23692,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
 
 var _myNavLink = require('./my-nav-link.jsx');
 
@@ -23735,7 +23735,7 @@ var MyNavLinks = (function (_Component) {
 
 exports.default = MyNavLinks;
 
-},{"./my-nav-link.jsx":211,"react":210,"react-router":48}],213:[function(require,module,exports){
+},{"./my-nav-link.jsx":211,"react":210}],213:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23748,13 +23748,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
-
-var _reactRouter2 = _interopRequireDefault(_reactRouter);
-
 var _myNavLinks = require('./my-nav-links.jsx');
 
 var _myNavLinks2 = _interopRequireDefault(_myNavLinks);
+
+var _routesParser = require('./routes-parser.jsx');
+
+var _routesParser2 = _interopRequireDefault(_routesParser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23774,27 +23774,15 @@ var MyNav = (function (_Component) {
     }
 
     _createClass(MyNav, [{
+        key: 'getLinks',
+        value: function getLinks() {
+            var routes = this.props.routes[0] || [];
+            return (0, _routesParser2.default)(routes);
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var routes = this.props.routes[0] || [];
-            var indexRoute = routes.indexRoute || null;
-            var childRoutes = routes.childRoutes || null;
-            var links = [];
-            if (indexRoute) {
-                links.push({
-                    href: routes.path,
-                    title: indexRoute.title || indexRoute.component.displayName
-                });
-            }
-            if (childRoutes && childRoutes.length > 0) {
-                for (var i = 0; i < childRoutes.length; i++) {
-                    var child = childRoutes[i];
-                    links.push({
-                        href: child.path,
-                        title: child.title || child.component.displayName || child.component.name
-                    });
-                }
-            }
+            var links = this.getLinks();
             return _react2.default.createElement(
                 'div',
                 { id: 'nav' },
@@ -23808,7 +23796,36 @@ var MyNav = (function (_Component) {
 
 exports.default = MyNav;
 
-},{"./my-nav-links.jsx":212,"react":210,"react-router":48}],214:[function(require,module,exports){
+},{"./my-nav-links.jsx":212,"./routes-parser.jsx":214,"react":210}],214:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = parseLinks;
+function parseLinks(routes) {
+    var indexRoute = routes.indexRoute || null,
+        childRoutes = routes.childRoutes || null,
+        links = [];
+    if (indexRoute) {
+        links.push({
+            href: routes.path,
+            title: indexRoute.title || indexRoute.component.displayName
+        });
+    }
+    if (childRoutes && childRoutes.length > 0) {
+        for (var i = 0; i < childRoutes.length; i++) {
+            var child = childRoutes[i];
+            links.push({
+                href: child.path,
+                title: child.title || child.component.displayName || child.component.name
+            });
+        }
+    }
+    return links;
+}
+
+},{}],215:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

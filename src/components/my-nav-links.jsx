@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Router } from 'react-router';
 import MyNavLink from './my-nav-link.jsx';
 
 export default class MyNavLinks extends Component{
