@@ -72,13 +72,13 @@ var Info3 = _react2.default.createClass({
         );
     }
 });
-var Info4 = _react2.default.createClass({
-    displayName: 'Info4',
+var About = _react2.default.createClass({
+    displayName: 'About',
     render: function render() {
         return _react2.default.createElement(
             'h2',
             null,
-            'Info 4'
+            'About'
         );
     }
 });
@@ -90,10 +90,14 @@ var Info4 = _react2.default.createClass({
         _reactRouter.Route,
         { path: '/', component: App },
         _react2.default.createElement(_reactRouter.IndexRoute, { component: Home, title: 'da home' }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'info1', component: Info1 }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'info2', component: Info2, title: 'asd 2s' }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'info3', component: Info3 }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'info4', component: Info4, title: 'asd 4' })
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: 'info' },
+            _react2.default.createElement(_reactRouter.IndexRoute, { component: Info1 }),
+            _react2.default.createElement(_reactRouter.Route, { path: '/i2', component: Info2, title: 'asd 2s' }),
+            _react2.default.createElement(_reactRouter.Route, { path: '/i3', component: Info3 })
+        ),
+        _react2.default.createElement(_reactRouter.Route, { path: 'about', component: About, title: 'Abt' })
     )
 ), document.getElementById('app'));
 
@@ -23641,6 +23645,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
+var _myNavLinks = require('./my-nav-links.jsx');
+
+var _myNavLinks2 = _interopRequireDefault(_myNavLinks);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23662,7 +23670,12 @@ var MyNavLink = (function (_Component) {
         key: 'render',
         value: function render() {
             var href = this.props.link.href,
-                title = this.props.link.title;
+                title = this.props.link.title,
+                children = null;
+
+            if (this.props.link.children) {
+                children = _react2.default.createElement(_myNavLinks2.default, { links: this.props.link.children });
+            }
             return _react2.default.createElement(
                 'li',
                 null,
@@ -23670,7 +23683,8 @@ var MyNavLink = (function (_Component) {
                     _reactRouter.Link,
                     { to: href },
                     title
-                )
+                ),
+                children
             );
         }
     }]);
@@ -23680,7 +23694,7 @@ var MyNavLink = (function (_Component) {
 
 exports.default = MyNavLink;
 
-},{"react":210,"react-router":48}],212:[function(require,module,exports){
+},{"./my-nav-links.jsx":212,"react":210,"react-router":48}],212:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23810,15 +23824,18 @@ function parseLinks(routes) {
     if (indexRoute) {
         links.push({
             href: routes.path,
-            title: indexRoute.title || indexRoute.component.displayName
+            title: indexRoute.title || indexRoute.component.displayName,
+            children: null
         });
     }
     if (childRoutes && childRoutes.length > 0) {
         for (var i = 0; i < childRoutes.length; i++) {
             var child = childRoutes[i];
+            var children = child.childRoutes ? parseLinks(child) : null;
             links.push({
                 href: child.path,
-                title: child.title || child.component.displayName || child.component.name
+                title: child.title || child.component.displayName || child.component.name,
+                children: children
             });
         }
     }

@@ -6,17 +6,20 @@ export default function parseLinks(routes){
         links.push({
             href: routes.path,
             title: indexRoute.title ||
-                indexRoute.component.displayName
+                indexRoute.component.displayName,
+            children: null,
         });
     }
     if(childRoutes && childRoutes.length > 0){
         for(let i = 0; i < childRoutes.length; i++){
             let child = childRoutes[i];
+            let children = (child.childRoutes) ? parseLinks(child) : null;
             links.push({
                 href: child.path,
                 title: child.title ||
                     child.component.displayName ||
-                    child.component.name
+                    child.component.name,
+                children: children,
             });
         }
     }

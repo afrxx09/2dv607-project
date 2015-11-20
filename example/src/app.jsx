@@ -43,10 +43,10 @@ const Info3 = React.createClass({
         );
     }
 });
-const Info4 = React.createClass({
+const About = React.createClass({
     render(){
         return(
-            <h2>Info 4</h2>
+            <h2>About</h2>
         );
     }
 });
@@ -55,10 +55,12 @@ render(
     <Router>
         <Route path='/' component={App}>
             <IndexRoute component={Home} title="da home"/>
-            <Route path='info1' component={Info1}/>
-            <Route path='info2' component={Info2} title="asd 2s"/>
-            <Route path='info3' component={Info3}/>
-            <Route path='info4' component={Info4} title="asd 4"/>
+            <Route path='info'>
+                <IndexRoute component={Info1}/>
+                <Route path='/i2' component={Info2} title="asd 2s"/>
+                <Route path='/i3' component={Info3}/>
+            </Route>
+            <Route path='about' component={About} title='Abt' />
         </Route>
     </Router>,
     document.getElementById('app')
