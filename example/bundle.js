@@ -82,6 +82,26 @@ var About = _react2.default.createClass({
         );
     }
 });
+var Contact1 = _react2.default.createClass({
+    displayName: 'Contact1',
+    render: function render() {
+        return _react2.default.createElement(
+            'h2',
+            null,
+            'Contact 1'
+        );
+    }
+});
+var Contact2 = _react2.default.createClass({
+    displayName: 'Contact2',
+    render: function render() {
+        return _react2.default.createElement(
+            'h2',
+            null,
+            'Contact 2'
+        );
+    }
+});
 
 (0, _reactDom.render)(_react2.default.createElement(
     _reactRouter.Router,
@@ -94,10 +114,16 @@ var About = _react2.default.createClass({
             _reactRouter.Route,
             { path: 'info' },
             _react2.default.createElement(_reactRouter.IndexRoute, { component: Info1 }),
-            _react2.default.createElement(_reactRouter.Route, { path: '/i2', component: Info2, title: 'asd 2s' }),
-            _react2.default.createElement(_reactRouter.Route, { path: '/i3', component: Info3 })
+            _react2.default.createElement(_reactRouter.Route, { path: 'i2', component: Info2, title: 'asd 2s' }),
+            _react2.default.createElement(_reactRouter.Route, { path: 'i3', component: Info3 })
         ),
-        _react2.default.createElement(_reactRouter.Route, { path: 'about', component: About, title: 'Abt' })
+        _react2.default.createElement(_reactRouter.Route, { path: 'about', component: About, title: 'Abt' }),
+        _react2.default.createElement(
+            _reactRouter.Route,
+            null,
+            _react2.default.createElement(_reactRouter.Route, { path: 'conact1', component: Contact1 }),
+            _react2.default.createElement(_reactRouter.Route, { path: 'conact2', component: Contact2 })
+        )
     )
 ), document.getElementById('app'));
 
@@ -23669,21 +23695,18 @@ var MyNavLink = (function (_Component) {
     _createClass(MyNavLink, [{
         key: 'render',
         value: function render() {
-            var href = this.props.link.href,
-                title = this.props.link.title,
-                children = null;
-
-            if (this.props.link.children) {
-                children = _react2.default.createElement(_myNavLinks2.default, { links: this.props.link.children });
-            }
+            var title = this.props.link.title,
+                href = this.props.link.href || null,
+                children = this.props.link.children ? _react2.default.createElement(_myNavLinks2.default, { links: this.props.link.children }) : null,
+                aTag = !href ? title : _react2.default.createElement(
+                _reactRouter.Link,
+                { to: href },
+                title
+            );
             return _react2.default.createElement(
                 'li',
                 null,
-                _react2.default.createElement(
-                    _reactRouter.Link,
-                    { to: href },
-                    title
-                ),
+                aTag,
                 children
             );
         }
@@ -23811,33 +23834,37 @@ var MyNav = (function (_Component) {
 exports.default = MyNav;
 
 },{"./my-nav-links.jsx":212,"./routes-parser.jsx":214,"react":210}],214:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = parseLinks;
-function parseLinks(routes) {
+function createLink(node, parent) {
+    var parentPath = parent ? parent + '/' : '',
+        component = node.component || null,
+        href = !node.path ? null : parentPath + node.path;
+    return {
+        href: href,
+        title: node.title || component ? component.displayName || component.name : 'name me plix',
+        children: node.childRoutes ? parseLinks(node, href) : null
+    };
+}
+
+function parseLinks(routes, parentPath) {
     var indexRoute = routes.indexRoute || null,
-        childRoutes = routes.childRoutes || null,
+        childRoutes = routes.childRoutes || [],
         links = [];
     if (indexRoute) {
+        //indexRoute.path = routes.path;
+        //indexRoute.children = null;
         links.push({
             href: routes.path,
-            title: indexRoute.title || indexRoute.component.displayName,
-            children: null
+            title: indexRoute.title || indexRoute.component ? indexRoute.component.displayName || indexRoute.component.name : 'name me plix'
         });
     }
-    if (childRoutes && childRoutes.length > 0) {
-        for (var i = 0; i < childRoutes.length; i++) {
-            var child = childRoutes[i];
-            var children = child.childRoutes ? parseLinks(child) : null;
-            links.push({
-                href: child.path,
-                title: child.title || child.component.displayName || child.component.name,
-                children: children
-            });
-        }
+    for (var i = 0; i < childRoutes.length; i++) {
+        links.push(createLink(childRoutes[i], parentPath));
     }
     return links;
 }

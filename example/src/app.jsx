@@ -50,6 +50,21 @@ const About = React.createClass({
         );
     }
 });
+const Contact1 = React.createClass({
+    render(){
+        return(
+            <h2>Contact 1</h2>
+        );
+    }
+});
+const Contact2 = React.createClass({
+    render(){
+        return(
+            <h2>Contact 2</h2>
+        );
+    }
+});
+
 
 render(
     <Router>
@@ -57,10 +72,14 @@ render(
             <IndexRoute component={Home} title="da home"/>
             <Route path='info'>
                 <IndexRoute component={Info1}/>
-                <Route path='/i2' component={Info2} title="asd 2s"/>
-                <Route path='/i3' component={Info3}/>
+                <Route path='i2' component={Info2} title="asd 2s"/>
+                <Route path='i3' component={Info3}/>
             </Route>
             <Route path='about' component={About} title='Abt' />
+            <Route>
+                <Route path='conact1' component={Contact1}/>
+                <Route path='conact2' component={Contact2}/>
+            </Route>
         </Route>
     </Router>,
     document.getElementById('app')

@@ -4,18 +4,17 @@ import MyNavLinks from './my-nav-links.jsx';
 
 export default class MyNavLink extends Component{
     render(){
-        let href = this.props.link.href,
-            title = this.props.link.title,
-            children = null;
-            
-        if(this.props.link.children){
-            children = <MyNavLinks links={this.props.link.children}/>
-        }
+        let title = this.props.link.title,
+            href = this.props.link.href || null,
+            children = (this.props.link.children) ?
+                <MyNavLinks links={this.props.link.children}/> :
+                null,
+            aTag = (!href) ?
+                title :
+                <Link to={href}>{title}</Link>;
         return(
             <li>
-                <Link to={href}>
-                    {title}
-                </Link>
+                {aTag}
                 {children}
             </li>
         );
