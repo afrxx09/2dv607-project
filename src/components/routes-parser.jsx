@@ -1,8 +1,26 @@
+function hasChildIndexRoute(children){
+    if(children){
+        for(let i = 0; i < children.length; i++){
+            if(children[i].isIndex){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function createLink(node, parent){
     let parentPath = (parent) ? parent + '/' : '',
         component = node.component || null,
         href = (!node.path) ? null:  parentPath + node.path;
-    return {
+    
+    //Parameter routes ignored, should not be renderd
+    if(href !== null && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)){
+        return null;
+    }
+    //create a link object
+    let link = {
+        isIndex: false,
         href: href,
         title: node.title ||
             (component) ?
@@ -12,6 +30,18 @@ function createLink(node, parent){
             parseLinks(node, href) :
             null
     }
+    //When building child-paths with recursion, can re turn empty array.
+    if(link.children && link.children.length === 0){
+        link.children = null;
+    }
+    //If a Route has no component and has no children dont render
+    if(!component && !link.children){
+        return null;
+    }
+    if(!component && !hasChildIndexRoute(link.children)){
+        link.href = null;
+    }
+    return link;
 }
 
 export default function parseLinks(routes, parentPath){
@@ -19,9 +49,8 @@ export default function parseLinks(routes, parentPath){
         childRoutes = routes.childRoutes || [],
         links = [];
     if(indexRoute){
-        //indexRoute.path = routes.path;
-        //indexRoute.children = null;
         links.push({
+            isIndex: true,
             href: routes.path,
             title: indexRoute.title ||
             (indexRoute.component) ?
@@ -30,7 +59,10 @@ export default function parseLinks(routes, parentPath){
         });
     }
     for(let i = 0; i < childRoutes.length; i++){
-        links.push(createLink(childRoutes[i], parentPath));
+        let link = createLink(childRoutes[i], parentPath);
+        if(link !== null){
+            links.push(link);
+        }
     }
     return links;
 }

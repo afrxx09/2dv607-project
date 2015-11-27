@@ -6,17 +6,22 @@ export default class MyNavLink extends Component{
     render(){
         let title = this.props.link.title,
             href = this.props.link.href || null,
-            children = (this.props.link.children) ?
-                <MyNavLinks links={this.props.link.children}/> :
-                null,
+            children = this.props.link.children,    
             aTag = (!href) ?
                 title :
                 <Link to={href}>{title}</Link>;
-        return(
-            <li>
-                {aTag}
-                {children}
-            </li>
-        );
+        if(children && children.length > 0){
+            return(
+                <li>
+                    {aTag}
+                    <MyNavLinks links={children}/>
+                </li>
+            );
+        }
+        else{
+            return(
+                <li>{aTag}</li>
+            );
+        }
     }
 }

@@ -103,6 +103,106 @@ var Contact2 = _react2.default.createClass({
     }
 });
 
+var Members = _react2.default.createClass({
+    displayName: 'Members',
+    render: function render() {
+        return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'h2',
+                null,
+                'Members'
+            ),
+            _react2.default.createElement(
+                'ul',
+                null,
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: '/members/1' },
+                        'Memeber 1'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: '/members/2' },
+                        'Memeber 2'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: '/members/3' },
+                        'Memeber 3'
+                    )
+                )
+            ),
+            this.props.children
+        );
+    }
+});
+
+var Member = _react2.default.createClass({
+    displayName: 'Member',
+    render: function render() {
+        var id = this.props.params.id;
+
+        return _react2.default.createElement(
+            'h3',
+            null,
+            'Member id: ',
+            id
+        );
+    }
+});
+
+var User = _react2.default.createClass({
+    displayName: 'User',
+    render: function render() {
+        var userId = this.props.params.userId;
+
+        return _react2.default.createElement(
+            'h2',
+            null,
+            'User id: ',
+            userId
+        );
+    }
+});
+
+var TopFriends = _react2.default.createClass({
+    displayName: 'TopFriends',
+    render: function render() {
+        return _react2.default.createElement(
+            'h2',
+            null,
+            'Top Friends'
+        );
+    }
+});
+
+var Friend = _react2.default.createClass({
+    displayName: 'Friend',
+    render: function render() {
+        var friendId = this.props.params.friendId;
+
+        return _react2.default.createElement(
+            'h2',
+            null,
+            'Friend id: ',
+            friendId
+        );
+    }
+});
+
 (0, _reactDom.render)(_react2.default.createElement(
     _reactRouter.Router,
     null,
@@ -123,6 +223,22 @@ var Contact2 = _react2.default.createClass({
             null,
             _react2.default.createElement(_reactRouter.Route, { path: 'conact1', component: Contact1 }),
             _react2.default.createElement(_reactRouter.Route, { path: 'conact2', component: Contact2 })
+        ),
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: 'members', component: Members },
+            _react2.default.createElement(_reactRouter.Route, { path: ':id', component: Member })
+        ),
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: 'users' },
+            _react2.default.createElement(_reactRouter.Route, { path: ':userId', component: User })
+        ),
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: 'friends' },
+            _react2.default.createElement(_reactRouter.Route, { path: 'top-friends', component: TopFriends }),
+            _react2.default.createElement(_reactRouter.Route, { path: ':friendId', component: Friend })
         )
     )
 ), document.getElementById('app'));
@@ -23697,18 +23813,26 @@ var MyNavLink = (function (_Component) {
         value: function render() {
             var title = this.props.link.title,
                 href = this.props.link.href || null,
-                children = this.props.link.children ? _react2.default.createElement(_myNavLinks2.default, { links: this.props.link.children }) : null,
+                children = this.props.link.children,
                 aTag = !href ? title : _react2.default.createElement(
                 _reactRouter.Link,
                 { to: href },
                 title
             );
-            return _react2.default.createElement(
-                'li',
-                null,
-                aTag,
-                children
-            );
+            if (children && children.length > 0) {
+                return _react2.default.createElement(
+                    'li',
+                    null,
+                    aTag,
+                    _react2.default.createElement(_myNavLinks2.default, { links: children })
+                );
+            } else {
+                return _react2.default.createElement(
+                    'li',
+                    null,
+                    aTag
+                );
+            }
         }
     }]);
 
@@ -23840,15 +23964,45 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = parseLinks;
+function hasChildIndexRoute(children) {
+    if (children) {
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].isIndex) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function createLink(node, parent) {
     var parentPath = parent ? parent + '/' : '',
         component = node.component || null,
         href = !node.path ? null : parentPath + node.path;
-    return {
+
+    //Parameter routes ignored, should not be renderd
+    if (href !== null && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)) {
+        return null;
+    }
+    //create a link object
+    var link = {
+        isIndex: false,
         href: href,
         title: node.title || component ? component.displayName || component.name : 'name me plix',
         children: node.childRoutes ? parseLinks(node, href) : null
     };
+    //When building child-paths with recursion, can re turn empty array.
+    if (link.children && link.children.length === 0) {
+        link.children = null;
+    }
+    //If a Route has no component and has no children dont render
+    if (!component && !link.children) {
+        return null;
+    }
+    if (!component && !hasChildIndexRoute(link.children)) {
+        link.href = null;
+    }
+    return link;
 }
 
 function parseLinks(routes, parentPath) {
@@ -23856,15 +24010,17 @@ function parseLinks(routes, parentPath) {
         childRoutes = routes.childRoutes || [],
         links = [];
     if (indexRoute) {
-        //indexRoute.path = routes.path;
-        //indexRoute.children = null;
         links.push({
+            isIndex: true,
             href: routes.path,
             title: indexRoute.title || indexRoute.component ? indexRoute.component.displayName || indexRoute.component.name : 'name me plix'
         });
     }
     for (var i = 0; i < childRoutes.length; i++) {
-        links.push(createLink(childRoutes[i], parentPath));
+        var link = createLink(childRoutes[i], parentPath);
+        if (link !== null) {
+            links.push(link);
+        }
     }
     return links;
 }

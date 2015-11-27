@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, IndexRoute } from 'react-router'
+import { Router, Route, IndexRoute, Link } from 'react-router'
 import MyNav from './../../src/index.jsx';
 
 const App = React.createClass({
@@ -65,6 +65,56 @@ const Contact2 = React.createClass({
     }
 });
 
+const Members = React.createClass({
+    render(){
+        return(
+            <div>
+                <h2>Members</h2>
+                <ul>
+                    <li><Link to='/members/1'>Memeber 1</Link></li>
+                    <li><Link to='/members/2'>Memeber 2</Link></li>
+                    <li><Link to='/members/3'>Memeber 3</Link></li>
+                </ul>
+                {this.props.children}
+            </div>
+        );
+    }
+});
+
+const Member = React.createClass({
+    render(){
+        let { id } = this.props.params
+        return(
+            <h3>Member id: {id}</h3>
+        );
+    }
+});
+
+const User = React.createClass({
+    render(){
+        let { userId } = this.props.params
+        return(
+            <h2>User id: {userId}</h2>
+        );
+    }
+});
+
+const TopFriends = React.createClass({
+    render(){
+        return(
+            <h2>Top Friends</h2>
+        );
+    }
+});
+
+const Friend = React.createClass({
+    render(){
+        let { friendId } = this.props.params
+        return(
+            <h2>Friend id: {friendId}</h2>
+        );
+    }
+});
 
 render(
     <Router>
@@ -79,6 +129,16 @@ render(
             <Route>
                 <Route path='conact1' component={Contact1}/>
                 <Route path='conact2' component={Contact2}/>
+            </Route>
+            <Route path='members' component={Members}>
+                <Route path=':id' component={Member}/>
+            </Route>
+            <Route path='users'>
+                <Route path=':userId' component={User}/>
+            </Route>
+            <Route path='friends'>
+                <Route path='top-friends' component={TopFriends}/>
+                <Route path=':friendId' component={Friend}/>
             </Route>
         </Route>
     </Router>,
