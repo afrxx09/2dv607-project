@@ -3,6 +3,7 @@ html *{
     padding:0;
 }
 
-li{
-   padding:5px 10px;
+.navbar-brand img{
+    padding:2px;
+    width:23px;
 }

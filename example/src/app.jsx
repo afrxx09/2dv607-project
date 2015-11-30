@@ -6,7 +6,15 @@ import MyNav from './../../src/index.jsx';
 const App = React.createClass({
     render(){
         let myNavConf = {
-            bootstrap : true
+            bootstrap: {
+                brand: {
+                    href: '',
+                    title: 'MyNav Example',
+                    image: {
+                        src: 'img/React.js_logo.svg.png'
+                    }
+                }
+            }
         };
         
         return(

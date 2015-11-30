@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import List from './list.jsx';
-import BSList from './bs-list.jsx';
+import BSNav from './bs-nav.jsx';
 import parseLinks from './routes-parser.jsx';
 
 export default class MyNav extends Component{
@@ -12,18 +12,13 @@ export default class MyNav extends Component{
         let links = this.getLinks(),
             config = this.props.config;
         if(config.bootstrap){
-            let BSClassNames = 'navbar navbar-default';
             return(
-                <nav className={BSClassNames}>
-                    <div className="container">
-                        <BSList config={config} links={links} rootNav={true}/>
-                    </div>
-                </nav>
+                <BSNav config={config} links={links}/>
             );
         }
         return(
             <div>
-                <List links={links} />
+                <List links={links} config={config}/>
             </div>
         );
         
