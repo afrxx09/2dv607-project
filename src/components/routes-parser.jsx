@@ -9,37 +9,57 @@ function hasChildIndexRoute(children){
     return false;
 }
 
-function createLink(node, parent){
-    let parentPath = (parent) ? parent + '/' : '',
-        component = node.component || null,
-        href = (!node.path) ? null:  parentPath + node.path;
-    
+function getHref(path, parentPath){
+    parentPath = (parentPath) ? parentPath + '/' : '';
+    //If it has no component and none of its children is an index route, it should not render as a link.
+    return !path ? null : parentPath + path;
+}
+
+function getTitle(node){
+    if(node.title){
+        return node.title;
+    } else {
+        if(node.component){
+            return node.component.displayName || node.component.name;
+        } 
+    }
+    return 'Un-named link';
+}
+
+
+function getChildren(node, href){
+    if(node.childRoutes){
+        let children = parseLinks(node, href);
+        if(children.length > 0){
+            return children;
+        }
+    }
+    return null;
+}
+
+function createLink(node, parentPath){
+    if(node.hide){
+        return null;
+    }
+    let href = getHref(node.path, parentPath),
+        title = getTitle(node),
+        children = getChildren(node, href);
+    if(!node.component && !hasChildIndexRoute(children) ){
+        href = null;
+    }
+    if(!node.component && !children){
+        return null;
+    }
     //Parameter routes ignored, should not be renderd
-    if(href !== null && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)){
+    if(href && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)){
         return null;
     }
     //create a link object
     let link = {
         isIndex: false,
         href: href,
-        title: node.title ||
-            (component) ?
-                component.displayName || component.name :
-                'name me plix',
-        children: (node.childRoutes) ?
-            parseLinks(node, href) :
-            null
-    }
-    //When building child-paths with recursion, can re turn empty array.
-    if(link.children && link.children.length === 0){
-        link.children = null;
-    }
-    //If a Route has no component and has no children dont render
-    if(!component && !link.children){
-        return null;
-    }
-    if(!component && !hasChildIndexRoute(link.children)){
-        link.href = null;
+        title: title,
+        children: children
     }
     return link;
 }
@@ -51,11 +71,8 @@ export default function parseLinks(routes, parentPath){
     if(indexRoute){
         links.push({
             isIndex: true,
-            href: routes.path,
-            title: indexRoute.title ||
-            (indexRoute.component) ?
-                indexRoute.component.displayName || indexRoute.component.name :
-                'name me plix'
+            href: getHref(indexRoute.path, parentPath),
+            title: getTitle(indexRoute)
         });
     }
     for(let i = 0; i < childRoutes.length; i++){

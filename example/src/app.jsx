@@ -140,6 +140,10 @@ render(
                 <Route path='top-friends' component={TopFriends}/>
                 <Route path=':friendId' component={Friend}/>
             </Route>
+            <Route path='hidden'>
+                <Route hide={true}/>
+                <Route path='not-hidden' title='not hidden' component={Contact1} hide={false} />
+            </Route>
         </Route>
     </Router>,
     document.getElementById('app')
