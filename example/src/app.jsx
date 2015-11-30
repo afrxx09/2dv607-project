@@ -5,10 +5,14 @@ import MyNav from './../../src/index.jsx';
 
 const App = React.createClass({
     render(){
+        let myNavConf = {
+            bootstrap : true
+        };
+        
         return(
             <div id="wrap">
                 <h1>App</h1>
-                <MyNav routes={this.props.routes}/>
+                <MyNav routes={this.props.routes} config={myNavConf}/>
                 {this.props.children}
             </div>
         );

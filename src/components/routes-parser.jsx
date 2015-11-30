@@ -12,7 +12,7 @@ function hasChildIndexRoute(children){
 function getHref(path, parentPath){
     parentPath = (parentPath) ? parentPath + '/' : '';
     //If it has no component and none of its children is an index route, it should not render as a link.
-    return !path ? null : parentPath + path;
+    return (!path) ? null : parentPath + path;
 }
 
 function getTitle(node){
@@ -71,7 +71,7 @@ export default function parseLinks(routes, parentPath){
     if(indexRoute){
         links.push({
             isIndex: true,
-            href: getHref(indexRoute.path, parentPath),
+            href: getHref(parentPath),
             title: getTitle(indexRoute)
         });
     }

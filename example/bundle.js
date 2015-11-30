@@ -18,6 +18,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = _react2.default.createClass({
     displayName: 'App',
     render: function render() {
+        var myNavConf = {
+            bootstrap: true
+        };
+
         return _react2.default.createElement(
             'div',
             { id: 'wrap' },
@@ -26,7 +30,7 @@ var App = _react2.default.createClass({
                 null,
                 'App'
             ),
-            _react2.default.createElement(_index2.default, { routes: this.props.routes }),
+            _react2.default.createElement(_index2.default, { routes: this.props.routes, config: myNavConf }),
             this.props.children
         );
     }
@@ -249,7 +253,7 @@ var Friend = _react2.default.createClass({
     )
 ), document.getElementById('app'));
 
-},{"./../../src/index.jsx":215,"react":210,"react-dom":28,"react-router":48}],2:[function(require,module,exports){
+},{"./../../src/index.jsx":217,"react":210,"react-dom":28,"react-router":48}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -23793,9 +23797,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _myNavLinks = require('./my-nav-links.jsx');
+var _bsList = require('./bs-list.jsx');
 
-var _myNavLinks2 = _interopRequireDefault(_myNavLinks);
+var _bsList2 = _interopRequireDefault(_bsList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23805,22 +23809,160 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MyNavLink = (function (_Component) {
-    _inherits(MyNavLink, _Component);
+var BSListItem = (function (_Component) {
+    _inherits(BSListItem, _Component);
 
-    function MyNavLink() {
-        _classCallCheck(this, MyNavLink);
+    function BSListItem() {
+        _classCallCheck(this, BSListItem);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(MyNavLink).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSListItem).apply(this, arguments));
     }
 
-    _createClass(MyNavLink, [{
+    _createClass(BSListItem, [{
+        key: 'render',
+        value: function render() {
+            var title = this.props.link.title,
+                href = this.props.link.href || '',
+                children = this.props.link.children,
+                config = this.props.config;
+
+            if (children && children.length > 0) {
+                return _react2.default.createElement(
+                    'li',
+                    { className: 'dropdown' },
+                    _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
+                        title,
+                        ' ',
+                        _react2.default.createElement('span', { className: 'caret' })
+                    ),
+                    _react2.default.createElement(_bsList2.default, { links: children, config: config })
+                );
+            }
+            return _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: href },
+                    title
+                )
+            );
+        }
+    }]);
+
+    return BSListItem;
+})(_react.Component);
+
+exports.default = BSListItem;
+
+},{"./bs-list.jsx":212,"react":210,"react-router":48}],212:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _bsListItem = require('./bs-list-item.jsx');
+
+var _bsListItem2 = _interopRequireDefault(_bsListItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var List = (function (_Component) {
+    _inherits(List, _Component);
+
+    function List() {
+        _classCallCheck(this, List);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
+    }
+
+    _createClass(List, [{
+        key: 'render',
+        value: function render() {
+            var config = this.props.config;
+            var listItems = this.props.links.map(function (link, n) {
+                return _react2.default.createElement(_bsListItem2.default, { key: n, link: link, config: config });
+            });
+            if (this.props.rootNav) {
+                return _react2.default.createElement(
+                    'ul',
+                    { className: 'nav navbar-nav' },
+                    listItems
+                );
+            }
+            return _react2.default.createElement(
+                'ul',
+                { className: 'dropdown-menu' },
+                listItems
+            );
+        }
+    }]);
+
+    return List;
+})(_react.Component);
+
+exports.default = List;
+
+},{"./bs-list-item.jsx":211,"react":210}],213:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _list = require('./list.jsx');
+
+var _list2 = _interopRequireDefault(_list);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ListItem = (function (_Component) {
+    _inherits(ListItem, _Component);
+
+    function ListItem() {
+        _classCallCheck(this, ListItem);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).apply(this, arguments));
+    }
+
+    _createClass(ListItem, [{
         key: 'render',
         value: function render() {
             var title = this.props.link.title,
                 href = this.props.link.href || null,
                 children = this.props.link.children,
-                aTag = !href ? title : _react2.default.createElement(
+                config = this.props.config;
+
+            var aTag = !href ? title : _react2.default.createElement(
                 _reactRouter.Link,
                 { to: href },
                 title
@@ -23830,24 +23972,23 @@ var MyNavLink = (function (_Component) {
                     'li',
                     null,
                     aTag,
-                    _react2.default.createElement(_myNavLinks2.default, { links: children })
-                );
-            } else {
-                return _react2.default.createElement(
-                    'li',
-                    null,
-                    aTag
+                    _react2.default.createElement(_list2.default, { links: children, config: config })
                 );
             }
+            return _react2.default.createElement(
+                'li',
+                null,
+                aTag
+            );
         }
     }]);
 
-    return MyNavLink;
+    return ListItem;
 })(_react.Component);
 
-exports.default = MyNavLink;
+exports.default = ListItem;
 
-},{"./my-nav-links.jsx":212,"react":210,"react-router":48}],212:[function(require,module,exports){
+},{"./list.jsx":214,"react":210,"react-router":48}],214:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23860,9 +24001,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _myNavLink = require('./my-nav-link.jsx');
+var _listItem = require('./list-item.jsx');
 
-var _myNavLink2 = _interopRequireDefault(_myNavLink);
+var _listItem2 = _interopRequireDefault(_listItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23872,37 +24013,37 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MyNavLinks = (function (_Component) {
-    _inherits(MyNavLinks, _Component);
+var List = (function (_Component) {
+    _inherits(List, _Component);
 
-    function MyNavLinks() {
-        _classCallCheck(this, MyNavLinks);
+    function List() {
+        _classCallCheck(this, List);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(MyNavLinks).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
     }
 
-    _createClass(MyNavLinks, [{
+    _createClass(List, [{
         key: 'render',
         value: function render() {
-
-            var myNavLinks = this.props.links.map(function (link, n) {
-                return _react2.default.createElement(_myNavLink2.default, { key: n, link: link });
+            var config = this.props.config;
+            var listItems = this.props.links.map(function (link, n) {
+                return _react2.default.createElement(_listItem2.default, { key: n, link: link, config: config });
             });
 
             return _react2.default.createElement(
                 'ul',
                 null,
-                myNavLinks
+                listItems
             );
         }
     }]);
 
-    return MyNavLinks;
+    return List;
 })(_react.Component);
 
-exports.default = MyNavLinks;
+exports.default = List;
 
-},{"./my-nav-link.jsx":211,"react":210}],213:[function(require,module,exports){
+},{"./list-item.jsx":213,"react":210}],215:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23915,9 +24056,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _myNavLinks = require('./my-nav-links.jsx');
+var _list = require('./list.jsx');
 
-var _myNavLinks2 = _interopRequireDefault(_myNavLinks);
+var _list2 = _interopRequireDefault(_list);
+
+var _bsList = require('./bs-list.jsx');
+
+var _bsList2 = _interopRequireDefault(_bsList);
 
 var _routesParser = require('./routes-parser.jsx');
 
@@ -23949,11 +24094,24 @@ var MyNav = (function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var links = this.getLinks();
+            var links = this.getLinks(),
+                config = this.props.config;
+            if (config.bootstrap) {
+                var BSClassNames = 'navbar navbar-default';
+                return _react2.default.createElement(
+                    'nav',
+                    { className: BSClassNames },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(_bsList2.default, { config: config, links: links, rootNav: true })
+                    )
+                );
+            }
             return _react2.default.createElement(
                 'div',
-                { id: 'nav' },
-                _react2.default.createElement(_myNavLinks2.default, { links: links })
+                null,
+                _react2.default.createElement(_list2.default, { links: links })
             );
         }
     }]);
@@ -23963,7 +24121,7 @@ var MyNav = (function (_Component) {
 
 exports.default = MyNav;
 
-},{"./my-nav-links.jsx":212,"./routes-parser.jsx":214,"react":210}],214:[function(require,module,exports){
+},{"./bs-list.jsx":212,"./list.jsx":214,"./routes-parser.jsx":216,"react":210}],216:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24042,7 +24200,7 @@ function parseLinks(routes, parentPath) {
     if (indexRoute) {
         links.push({
             isIndex: true,
-            href: getHref(indexRoute.path, parentPath),
+            href: getHref(parentPath),
             title: getTitle(indexRoute)
         });
     }
@@ -24055,7 +24213,7 @@ function parseLinks(routes, parentPath) {
     return links;
 }
 
-},{}],215:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24070,4 +24228,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _myNav2.default;
 
-},{"./components/my-nav.jsx":213}]},{},[1]);
+},{"./components/my-nav.jsx":215}]},{},[1]);
