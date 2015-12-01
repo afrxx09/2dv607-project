@@ -3,7 +3,7 @@ import List from './list';
 import BSNav from './bs-nav';
 import parseLinks from './routes-parser';
 
-export default class MyNav extends Component{
+export default class AsdNav extends Component{
     getLinks(){
         let routes = this.props.routes[0] || [];
         return parseLinks(routes);
@@ -12,7 +12,7 @@ export default class MyNav extends Component{
         let links = this.getLinks(),
             config = this.props.config || {};
         if(!config.id){
-            config.id = 'my-nav';
+            config.id = 'asd-nav';
         }
         if(config.bootstrap){
             return(

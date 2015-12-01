@@ -1,3 +1,3 @@
-import MyNav from './components/my-nav';
+import AsdNav from './components/asd-nav';
 
-export default MyNav;
+export default AsdNav;
