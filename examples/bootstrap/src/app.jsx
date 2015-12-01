@@ -1,14 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, Link } from 'react-router'
-import MyNav from './../../src/index.jsx';
+import MyNav from './../../../dist/index.js';
 
 const App = React.createClass({
     render(){
         let myNavConf = {
             bootstrap: {
                 brand: {
-                    href: '',
+                    href: '/',
                     title: 'MyNav Example',
                     image: {
                         src: 'img/React.js_logo.svg.png'

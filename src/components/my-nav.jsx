@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import List from './list.jsx';
-import BSNav from './bs-nav.jsx';
-import parseLinks from './routes-parser.jsx';
+import List from './list';
+import BSNav from './bs-nav';
+import parseLinks from './routes-parser';
 
 export default class MyNav extends Component{
     getLinks(){
@@ -10,7 +10,7 @@ export default class MyNav extends Component{
     }
     render(){
         let links = this.getLinks(),
-            config = this.props.config;
+            config = this.props.config || {};
         if(!config.id){
             config.id = 'my-nav';
         }
@@ -20,8 +20,8 @@ export default class MyNav extends Component{
             );
         }
         return(
-            <div>
-                <List links={links} config={config}/>
+            <div id={config.id}>
+                <List config={config} links={links}/>
             </div>
         );
         

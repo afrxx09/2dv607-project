@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import List from './list.jsx';
-import BSList from './bs-list.jsx';
-import parseLinks from './routes-parser.jsx';
+import { Link } from 'react-router';
+import BSList from './bs-list';
 
 export default class BSNav extends Component{
     render(){
@@ -27,10 +26,10 @@ export default class BSNav extends Component{
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className='navbar-brand' href={brandHref}>
+                    <Link to={brandHref} className='navbar-brand'>
                         {brandImage}
                         {brandTitle}
-                    </a>
+                    </Link>
                 </div>
         }
         return(

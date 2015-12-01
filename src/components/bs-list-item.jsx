@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import BSList from './bs-list.jsx';
+import BSList from './bs-list';
 
 export default class BSListItem extends Component{
     render(){

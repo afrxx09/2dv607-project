@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BSListItem from './bs-list-item.jsx';
+import BSListItem from './bs-list-item';
 
 export default class List extends Component{
     render(){

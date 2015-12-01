@@ -2,7 +2,7 @@
   "name": "asd-nav",
   "description": "Navigation component that reads routes from React Router to render a nested html-list of links.",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afrxx09/2dv607-project.git"
@@ -21,11 +21,10 @@
     "history": "^1.13.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-redux": "^4.0.0",
-    "react-router": "^1.0.0",
-    "redux": "^3.0.4"
+    "react-router": "^1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.2.0",
     "babel-eslint": "^4.1.5",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
@@ -36,8 +35,11 @@
     "mocha": "^2.3.4"
   },
   "scripts": {
-    "example": "browserify -t [ babelify --presets [ react es2015 ] ] example/src/app.jsx -o example/bundle.js",
+    "example-normal" : "browserify -t [ babelify --presets [ react es2015 ] ] examples/normal/src/app.jsx -o examples/normal/bundle.js",
+    "example-bootstrap": "browserify -t [ babelify --presets [ react es2015 ] ] examples/bootstrap/src/app.jsx -o examples/bootstrap/bundle.js",
+    "examples" : "npm run example-normal && npm run example-bootstrap",
     "test": "mocha test",
-    "lint": "eslint --ext .jsx src/**"
+    "lint": "eslint --ext .jsx src/**",
+    "build": "babel src --out-dir dist --presets es2015,react"
   }
 }

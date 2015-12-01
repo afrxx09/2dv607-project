@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import List from './list.jsx';
+import List from './list';
 
 export default class ListItem extends Component{
     render(){
