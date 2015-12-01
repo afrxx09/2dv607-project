@@ -21,6 +21,12 @@ export default class BSNav extends Component{
                     </span>;
             }
             brand = <div className='navbar-header'>
+                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target={'#' + config.id}>
+                        <span className="sr-only">Toggle navigation</span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                    </button>
                     <a className='navbar-brand' href={brandHref}>
                         {brandImage}
                         {brandTitle}
@@ -31,7 +37,7 @@ export default class BSNav extends Component{
             <nav className={BSClassNames}>
                 <div className='container-fluid'>
                     {brand}
-                    <div className='collapse navbar-collapse'>
+                    <div id={config.id} className='collapse navbar-collapse'>
                         <BSList config={config} links={links} rootNav={true}/>
                     </div>
                 </div>

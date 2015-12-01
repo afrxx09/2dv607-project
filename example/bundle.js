@@ -23992,6 +23992,18 @@ var BSNav = (function (_Component) {
                     'div',
                     { className: 'navbar-header' },
                     _react2.default.createElement(
+                        'button',
+                        { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#' + config.id },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'sr-only' },
+                            'Toggle navigation'
+                        ),
+                        _react2.default.createElement('span', { className: 'icon-bar' }),
+                        _react2.default.createElement('span', { className: 'icon-bar' }),
+                        _react2.default.createElement('span', { className: 'icon-bar' })
+                    ),
+                    _react2.default.createElement(
                         'a',
                         { className: 'navbar-brand', href: brandHref },
                         brandImage,
@@ -24008,7 +24020,7 @@ var BSNav = (function (_Component) {
                     brand,
                     _react2.default.createElement(
                         'div',
-                        { className: 'collapse navbar-collapse' },
+                        { id: config.id, className: 'collapse navbar-collapse' },
                         _react2.default.createElement(_bsList2.default, { config: config, links: links, rootNav: true })
                     )
                 )
@@ -24199,6 +24211,9 @@ var MyNav = (function (_Component) {
         value: function render() {
             var links = this.getLinks(),
                 config = this.props.config;
+            if (!config.id) {
+                config.id = 'my-nav';
+            }
             if (config.bootstrap) {
                 return _react2.default.createElement(_bsNav2.default, { config: config, links: links });
             }

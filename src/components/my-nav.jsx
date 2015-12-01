@@ -11,6 +11,9 @@ export default class MyNav extends Component{
     render(){
         let links = this.getLinks(),
             config = this.props.config;
+        if(!config.id){
+            config.id = 'my-nav';
+        }
         if(config.bootstrap){
             return(
                 <BSNav config={config} links={links}/>
