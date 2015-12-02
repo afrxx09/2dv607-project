@@ -18,9 +18,10 @@ exports.default = function (props) {
     var listItems = props.links.map(function (link, n) {
         return _react2.default.createElement(_bsListItem2.default, { key: n, link: link, config: props.config });
     });
+    var classes = props.rootNav ? 'nav navbar-nav' : 'dropdown-menu';
     return _react2.default.createElement(
         'ul',
-        { className: props.rootNav ? 'nav navbar-nav' : 'dropdown-menu' },
+        { className: classes },
         listItems
     );
 };

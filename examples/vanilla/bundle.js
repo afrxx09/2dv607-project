@@ -316,18 +316,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = _react2.default.createClass({
     displayName: 'App',
     render: function render() {
-        var myNavConf = {
-            bootstrap: {
-                brand: {
-                    href: '/',
-                    title: 'MyNav Example',
-                    image: {
-                        src: 'img/React.js_logo.svg.png'
-                    }
-                }
-            }
-        };
-
         return _react2.default.createElement(
             'div',
             { id: 'wrap' },
@@ -336,7 +324,7 @@ var App = _react2.default.createClass({
                 null,
                 'App'
             ),
-            _react2.default.createElement(_index2.default, { routes: this.props.routes, config: myNavConf }),
+            _react2.default.createElement(_index2.default, { routes: this.props.routes }),
             this.props.children
         );
     }

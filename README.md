@@ -57,9 +57,9 @@ Some runable examples with code to check out it can be used.
 
 ### Vanilla example
 
-Renders a simple ul-li navigation wrapped in a div. Style it your self how ever you want.
-[Run Vanilla example](http://afrxx09.github.io/2dv607-project/examples/normal/)
-[Vanilla example code](https://github.com/afrxx09/2dv607-project/tree/gh-pages/examples/normal)
+Renders a simple ul-li navigation wrapped in a div. Style it your self how ever you want. The example isn't anything fancy, just some simple css to show some basics.
+[Run Vanilla example](http://afrxx09.github.io/2dv607-project/examples/vanilla/)
+[Vanilla example code](https://github.com/afrxx09/2dv607-project/tree/gh-pages/examples/vanilla)
 
 ### Bootstrap example
 

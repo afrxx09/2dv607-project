@@ -35,9 +35,9 @@
     "mocha": "^2.3.4"
   },
   "scripts": {
-    "example-normal" : "browserify -t [ babelify --presets [ react es2015 ] ] examples/normal/src/app.jsx -o examples/normal/bundle.js",
+    "example-vanilla" : "browserify -t [ babelify --presets [ react es2015 ] ] examples/vanilla/src/app.jsx -o examples/vanilla/bundle.js",
     "example-bootstrap": "browserify -t [ babelify --presets [ react es2015 ] ] examples/bootstrap/src/app.jsx -o examples/bootstrap/bundle.js",
-    "examples" : "npm run example-normal && npm run example-bootstrap",
+    "examples" : "npm run example-vanilla && npm run example-bootstrap",
     "test": "mocha test",
     "lint": "eslint --ext .jsx src/**",
     "build": "babel src --out-dir dist --presets es2015,react"
