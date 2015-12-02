@@ -16,14 +16,8 @@ function getHref(path, parentPath){
 }
 
 function getTitle(node){
-    if(node.title){
-        return node.title;
-    } else {
-        if(node.component){
-            return node.component.displayName || node.component.name;
-        } 
-    }
-    return 'Un-named link';
+    let comp = node.component || {};
+    return node.title || comp.displayName || comp.name || 'Un-named link';
 }
 
 
@@ -42,7 +36,6 @@ function createLink(node, parentPath){
         return null;
     }
     let href = getHref(node.path, parentPath),
-        title = getTitle(node),
         children = getChildren(node, href);
     if(!node.component && !hasChildIndexRoute(children) ){
         href = null;
@@ -55,13 +48,12 @@ function createLink(node, parentPath){
         return null;
     }
     //create a link object
-    let link = {
+    return {
         isIndex: false,
         href: href,
-        title: title,
+        title: getTitle(node),
         children: children
-    }
-    return link;
+    };
 }
 
 export default function parseLinks(routes, parentPath){

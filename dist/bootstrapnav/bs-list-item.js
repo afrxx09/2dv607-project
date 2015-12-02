@@ -19,10 +19,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function (props) {
     var title = props.link.title,
         href = props.link.href || '',
-        children = props.link.children,
-        config = props.config;
+        children = props.link.children;
 
-    if (children && children.length > 0) {
+    if (children && children.length) {
         return _react2.default.createElement(
             'li',
             { className: 'dropdown' },
@@ -33,7 +32,7 @@ exports.default = function (props) {
                 ' ',
                 _react2.default.createElement('span', { className: 'caret' })
             ),
-            _react2.default.createElement(_bsList2.default, { links: children, config: config })
+            _react2.default.createElement(_bsList2.default, { links: children, config: props.config })
         );
     }
     return _react2.default.createElement(

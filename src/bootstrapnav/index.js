@@ -4,7 +4,6 @@ import BSList from './bs-list';
 
 export default (props)=> {
     let config = props.config,
-        links = props.links,
         type = config.bootstrap.type || '',
         BSClassNames = 'navbar navbar-default ' + type,
         brand = '';
@@ -36,7 +35,7 @@ export default (props)=> {
             <div className='container-fluid'>
                 {brand}
                 <div id={config.id} className='collapse navbar-collapse'>
-                    <BSList config={config} links={links} rootNav={true}/>
+                    <BSList config={config} links={props.links} rootNav={true}/>
                 </div>
             </div>
         </nav>
