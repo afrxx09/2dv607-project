@@ -22,11 +22,10 @@ function _interopRequireDefault(obj) {
 exports.default = function (props) {
     var title = props.link.title,
         href = props.link.href || '',
-        children = props.link.children,
-        config = props.config;
+        children = props.link.children;
 
-    if (children && children.length > 0) {
-        return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(_bsList2.default, { links: children, config: config }));
+    if (children && children.length) {
+        return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(_bsList2.default, { links: children, config: props.config }));
     }
     return _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: href }, title));
 };
@@ -51,14 +50,10 @@ function _interopRequireDefault(obj) {
 }
 
 exports.default = function (props) {
-    var config = props.config;
     var listItems = props.links.map(function (link, n) {
-        return _react2.default.createElement(_bsListItem2.default, { key: n, link: link, config: config });
+        return _react2.default.createElement(_bsListItem2.default, { key: n, link: link, config: props.config });
     });
-    if (props.rootNav) {
-        return _react2.default.createElement('ul', { className: 'nav navbar-nav' }, listItems);
-    }
-    return _react2.default.createElement('ul', { className: 'dropdown-menu' }, listItems);
+    return _react2.default.createElement('ul', { className: props.rootNav ? 'nav navbar-nav' : 'dropdown-menu' }, listItems);
 };
 
 },{"./bs-list-item":1,"react":218}],3:[function(require,module,exports){
@@ -84,7 +79,6 @@ function _interopRequireDefault(obj) {
 
 exports.default = function (props) {
     var config = props.config,
-        links = props.links,
         type = config.bootstrap.type || '',
         BSClassNames = 'navbar navbar-default ' + type,
         brand = '';
@@ -98,7 +92,7 @@ exports.default = function (props) {
         }
         brand = _react2.default.createElement('div', { className: 'navbar-header' }, _react2.default.createElement('button', { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#' + config.id }, _react2.default.createElement('span', { className: 'sr-only' }, 'Toggle navigation'), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' })), _react2.default.createElement(_reactRouter.Link, { to: brandHref, className: 'navbar-brand' }, brandImage, brandTitle));
     }
-    return _react2.default.createElement('nav', { className: BSClassNames, id: config.id }, _react2.default.createElement('div', { className: 'container-fluid' }, brand, _react2.default.createElement('div', { id: config.id, className: 'collapse navbar-collapse' }, _react2.default.createElement(_bsList2.default, { config: config, links: links, rootNav: true }))));
+    return _react2.default.createElement('nav', { className: BSClassNames, id: config.id }, _react2.default.createElement('div', { className: 'container-fluid' }, brand, _react2.default.createElement('div', { id: config.id, className: 'collapse navbar-collapse' }, _react2.default.createElement(_bsList2.default, { config: config, links: props.links, rootNav: true }))));
 };
 
 },{"./bs-list":2,"react":218,"react-router":56}],4:[function(require,module,exports){
@@ -163,14 +157,8 @@ function getHref(path, parentPath) {
 }
 
 function getTitle(node) {
-    if (node.title) {
-        return node.title;
-    } else {
-        if (node.component) {
-            return node.component.displayName || node.component.name;
-        }
-    }
-    return 'Un-named link';
+    var comp = node.component || {};
+    return node.title || comp.displayName || comp.name || 'Un-named link';
 }
 
 function getChildren(node, href) {
@@ -188,7 +176,6 @@ function createLink(node, parentPath) {
         return null;
     }
     var href = getHref(node.path, parentPath),
-        title = getTitle(node),
         children = getChildren(node, href);
     if (!node.component && !hasChildIndexRoute(children)) {
         href = null;
@@ -201,13 +188,12 @@ function createLink(node, parentPath) {
         return null;
     }
     //create a link object
-    var link = {
+    return {
         isIndex: false,
         href: href,
-        title: title,
+        title: getTitle(node),
         children: children
     };
-    return link;
 }
 
 function parseLinks(routes, parentPath) {
@@ -277,14 +263,8 @@ function _interopRequireDefault(obj) {
 exports.default = function (props) {
     var title = props.link.title,
         href = props.link.href || null,
-        children = props.link.children,
-        config = props.config;
-
-    var aTag = !href ? title : _react2.default.createElement(_reactRouter.Link, { to: href }, title);
-    if (children && children.length > 0) {
-        return _react2.default.createElement('li', null, aTag, _react2.default.createElement(_list2.default, { links: children, config: config }));
-    }
-    return _react2.default.createElement('li', null, aTag);
+        children = props.link.children;
+    return _react2.default.createElement('li', null, href ? _react2.default.createElement(_reactRouter.Link, { to: href }, title) : title, children && children.length ? _react2.default.createElement(_list2.default, { links: children, config: props.config }) : "");
 };
 
 },{"./list":8,"react":218,"react-router":56}],8:[function(require,module,exports){

@@ -18,7 +18,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (props) {
     var config = props.config,
-        links = props.links,
         type = config.bootstrap.type || '',
         BSClassNames = 'navbar navbar-default ' + type,
         brand = '';
@@ -67,7 +66,7 @@ exports.default = function (props) {
             _react2.default.createElement(
                 'div',
                 { id: config.id, className: 'collapse navbar-collapse' },
-                _react2.default.createElement(_bsList2.default, { config: config, links: links, rootNav: true })
+                _react2.default.createElement(_bsList2.default, { config: config, links: props.links, rootNav: true })
             )
         )
     );
