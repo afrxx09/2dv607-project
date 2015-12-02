@@ -4,7 +4,9 @@ import VanillaNav from './vanillanav';
 import parseLinks from './routes-parser';
 
 export default (props)=> {
-    let links = parseLinks(props.routes[0] || []),
+    let routes = props.routes[0] || [],
+        rootPath = routes.path || null,
+        links = parseLinks(routes, rootPath),
         config = props.config || {};
     if(!config.id){
         config.id = 'asd-nav';

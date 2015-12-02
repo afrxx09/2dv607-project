@@ -23,7 +23,9 @@ var _routesParser2 = _interopRequireDefault(_routesParser);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (props) {
-    var links = (0, _routesParser2.default)(props.routes[0] || []),
+    var routes = props.routes[0] || [],
+        rootPath = routes.path || null,
+        links = (0, _routesParser2.default)(routes, rootPath),
         config = props.config || {};
     if (!config.id) {
         config.id = 'asd-nav';

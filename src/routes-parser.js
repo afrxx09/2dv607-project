@@ -11,7 +11,12 @@ function hasChildIndexRoute(children){
 
 function getHref(path, parentPath){
     parentPath = (parentPath) ? parentPath + '/' : '';
-    //If it has no component and none of its children is an index route, it should not render as a link.
+    /*
+        Not pretty, problem:
+        Index routes has no path so their parentPath becomes the path,
+        regular child routes(of root) would later also add their parent path resulting in a double slash.
+    */
+    parentPath = parentPath.replace('//', '/');
     return (!path) ? null : parentPath + path;
 }
 
@@ -24,7 +29,7 @@ function getTitle(node){
 function getChildren(node, href){
     if(node.childRoutes){
         let children = parseLinks(node, href);
-        if(children.length > 0){
+        if(children.length){
             return children;
         }
     }
@@ -37,9 +42,11 @@ function createLink(node, parentPath){
     }
     let href = getHref(node.path, parentPath),
         children = getChildren(node, href);
-    if(!node.component && !hasChildIndexRoute(children) ){
+    //Has no component, should not render as link
+    if(!node.component){
         href = null;
     }
+    //no component nor children should not be rendered
     if(!node.component && !children){
         return null;
     }
@@ -47,7 +54,6 @@ function createLink(node, parentPath){
     if(href && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)){
         return null;
     }
-    //create a link object
     return {
         isIndex: false,
         href: href,
