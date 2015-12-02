@@ -5,7 +5,10 @@ export default (props)=> {
     let listItems = props.links.map(function(link, n){
         return <BSListItem key={n} link={link} config={props.config}/>
     });
-    return ( <ul className={props.rootNav ? 'nav navbar-nav' : 'dropdown-menu'}>
-        {listItems}
-    </ul>);
+    let classes = props.rootNav ? 'nav navbar-nav' : 'dropdown-menu';
+    return (
+        <ul className={classes}>
+            {listItems}
+        </ul>
+    );
 }

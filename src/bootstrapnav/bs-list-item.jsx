@@ -8,12 +8,14 @@ export default (props)=> {
         children = props.link.children;
         
     if(children && children.length){
-        return (<li className='dropdown'>
-            <Link to={href} className='dropdown-toggle' data-toggle='dropdown'>
-                {title} <span className="caret"></span>
-            </Link>
-            <BSList links={children} config={props.config}/>
-        </li>);
+        return (
+            <li className='dropdown'>
+                <Link to={href} className='dropdown-toggle' data-toggle='dropdown'>
+                    {title} <span className="caret"></span>
+                </Link>
+                <BSList links={children} config={props.config}/>
+            </li>
+        );
     }
     return <li><Link to={href}>{title}</Link></li>;
 }
