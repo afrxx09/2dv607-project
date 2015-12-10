@@ -1,6 +1,6 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Router, Route, IndexRoute, Link } from 'react-router'
+import React from 'react';
+import { render } from 'react-dom';
+import { Router, Route, IndexRoute, Link } from 'react-router';
 import MyNav from './../../../dist/index.js';
 
 const App = React.createClass({

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react';
 import List from './list';
 
-export default (props)=> {
-    return (
-        <div id={props.config.id}>
-            <List {...props}/>
-        </div>
-    );
-}
+export default class VanillaNav extends Component{
+    render(){
+        return (
+            <div id={this.props.config.id}>
+                <List config={this.props.config} links={this.props.links}/>
+            </div>
+        );
+    }
+};

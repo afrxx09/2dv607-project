@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react';
 import BSNav from './bootstrapnav';
 import VanillaNav from './vanillanav';
-import parseLinks from './routes-parser';
+import routesParser from './routes-parser';
 
-export default (props)=> {
-    let routes = props.routes[0] || [],
-        rootPath = routes.path || null,
-        links = parseLinks(routes, rootPath),
-        config = props.config || {};
-    if(!config.id){
-        config.id = 'asd-nav';
+const DEFAULT_NAV_ID = 'asd-nav';
+
+export default class AsdNav extends Component{
+    getLinks(routes){
+        if(routes && routes.length){
+            return routesParser(routes[0]);
+        }
+        return [];
     }
-    let Nav = config.bootstrap ? BSNav : VanillaNav;
-    return <Nav {...{config,links}} />;
-}
+    render(){
+        let links = this.getLinks(this.props.routes),
+            config = this.props.config || {};
+        if(!config.id){
+            config.id = DEFAULT_NAV_ID;
+        }
+        let Nav = config.bootstrap ? BSNav : VanillaNav;
+        return (
+            <Nav config={config} links={links} />
+        );
+    }
+};

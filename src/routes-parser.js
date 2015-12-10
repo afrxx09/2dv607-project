@@ -62,7 +62,7 @@ function createLink(node, parentPath){
     };
 }
 
-export default function parseLinks(routes, parentPath){
+var parseLinks = function(routes, parentPath){
     let indexRoute = routes.indexRoute || null,
         childRoutes = routes.childRoutes || [],
         links = [];
@@ -80,4 +80,6 @@ export default function parseLinks(routes, parentPath){
         }
     }
     return links;
-}
+};
+
+module.exports = parseLinks;

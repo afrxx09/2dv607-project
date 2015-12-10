@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = parseLinks;
 function hasChildIndexRoute(children) {
     if (children) {
         for (var i = 0; i < children.length; i++) {
@@ -67,7 +63,7 @@ function createLink(node, parentPath) {
     };
 }
 
-function parseLinks(routes, parentPath) {
+var parseLinks = function parseLinks(routes, parentPath) {
     var indexRoute = routes.indexRoute || null,
         childRoutes = routes.childRoutes || [],
         links = [];
@@ -85,4 +81,6 @@ function parseLinks(routes, parentPath) {
         }
     }
     return links;
-}
+};
+
+module.exports = parseLinks;

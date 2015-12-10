@@ -12,9 +12,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _bsList = require('./bs-list');
+var _bsBrandImage = require('./bs-brand-image');
 
-var _bsList2 = _interopRequireDefault(_bsList);
+var _bsBrandImage2 = _interopRequireDefault(_bsBrandImage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,51 +24,50 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var BSListItem = (function (_Component) {
-    _inherits(BSListItem, _Component);
+var BSBrand = (function (_Component) {
+    _inherits(BSBrand, _Component);
 
-    function BSListItem() {
-        _classCallCheck(this, BSListItem);
+    function BSBrand() {
+        _classCallCheck(this, BSBrand);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSListItem).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSBrand).apply(this, arguments));
     }
 
-    _createClass(BSListItem, [{
+    _createClass(BSBrand, [{
         key: 'render',
         value: function render() {
-            var props = this.props,
-                title = props.link.title,
-                href = props.link.href || '',
-                children = props.link.children;
-
-            if (children && children.length) {
-                return _react2.default.createElement(
-                    'li',
-                    { className: 'dropdown' },
-                    _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
-                        title,
-                        ' ',
-                        _react2.default.createElement('span', { className: 'caret' })
-                    ),
-                    _react2.default.createElement(_bsList2.default, { links: children, config: props.config })
-                );
-            }
+            var brandOptions = this.props.opts,
+                navId = this.props.config.id,
+                brandHref = brandOptions.href || '',
+                brandTitle = brandOptions.title || '',
+                imageOpts = brandOptions.image,
+                brandImage = imageOpts ? _react2.default.createElement(_bsBrandImage2.default, { opts: imageOpts, title: brandTitle }) : null;
             return _react2.default.createElement(
-                'li',
-                null,
+                'div',
+                { className: 'navbar-header' },
+                _react2.default.createElement(
+                    'button',
+                    { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#' + navId },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'sr-only' },
+                        'Toggle navigation'
+                    ),
+                    _react2.default.createElement('span', { className: 'icon-bar' }),
+                    _react2.default.createElement('span', { className: 'icon-bar' }),
+                    _react2.default.createElement('span', { className: 'icon-bar' })
+                ),
                 _react2.default.createElement(
                     _reactRouter.Link,
-                    { to: href },
-                    title
+                    { to: brandHref, className: 'navbar-brand' },
+                    brandImage,
+                    brandTitle
                 )
             );
         }
     }]);
 
-    return BSListItem;
+    return BSBrand;
 })(_react.Component);
 
-exports.default = BSListItem;
-;
+exports.default = BSBrand;
