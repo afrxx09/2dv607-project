@@ -2,3 +2,8 @@ test
 examples
 src
 .gitignore
+.eslintrc
+.babelrc
+index.html
+*.log
+node_modules
