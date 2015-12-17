@@ -1,7 +1,7 @@
 {
   "name": "asd-nav",
   "description": "Navigation component that reads routes from React Router to render a nested html-list of links.",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
