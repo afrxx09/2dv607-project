@@ -1,1 +1,1 @@
-export AsdNav from './asd-nav';
+export { AsdNav } from './asd-nav';
