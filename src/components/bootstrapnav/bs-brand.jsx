@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import BSBrandImage from './bs-brand-image';
 
-const BSBrand = React.createComponent({
+class BSBrand extends React.Component {
     render(){
         let brandOptions = this.props.opts,
             navId = this.props.config.id,
@@ -27,6 +27,6 @@ const BSBrand = React.createComponent({
             </div>
         )
     }
-});
+}
 
 export default BSBrand;

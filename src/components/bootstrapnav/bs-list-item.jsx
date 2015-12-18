@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router';
 import BSList from './bs-list';
 
-const BSListItem = React.createComponent({
+class BSListItem extends React.Component {
     render(){
         let props = this.props,
             title = props.link.title,
             href = props.link.href || '',
             children = props.link.children;
-            
+
         if(children && children.length){
             return (
                 <li className='dropdown'>
@@ -25,6 +25,6 @@ const BSListItem = React.createComponent({
             </li>
         );
     }
-});
+}
 
 export default BSListItem;

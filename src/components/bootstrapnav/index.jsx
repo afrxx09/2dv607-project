@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import BSList from './bs-list';
 import BSBrand from './bs-brand';
 
-const BSNav = React.createClass({
+class BSNav extends React.Component {
     getBrandImage(ImageOptions, brandTitle){
         if(ImageOptions){
             let src = ImageOptions.src;
@@ -14,15 +14,16 @@ const BSNav = React.createClass({
             );
         }
         return null;
-    },
+    }
+
     render(){
         let props = this.props,
             config = props.config,
             type = config.bootstrap.type || '',
             BSClassNames = 'navbar navbar-default ' + type,
             brandOpts = config.bootstrap.brand,
-            brand = (brandOpts) ? 
-                <BSBrand config={config} opts={brandOpts}/> 
+            brand = (brandOpts) ?
+                <BSBrand config={config} opts={brandOpts}/>
                 : null ;
         return(
             <nav className={BSClassNames}>
@@ -35,6 +36,6 @@ const BSNav = React.createClass({
             </nav>
         );
     }
-});
+}
 
 export default BSNav;

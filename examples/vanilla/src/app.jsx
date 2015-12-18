@@ -1,14 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, Link } from 'react-router'
-import MyNav from './../../../dist/index.js';
+import { AsdNav } from './../../../dist/index.js';
 
 const App = React.createClass({
     render(){
         return(
             <div id="wrap">
                 <h1>App</h1>
-                <MyNav routes={this.props.routes}/>
+                <AsdNav routes={this.props.routes}/>
                 {this.props.children}
             </div>
         );
