@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class BSBrandImage extends Component{
+const BSBrandImage = React.createComponent({
     render(){
         let imageOptions = this.props.opts;
         return(
@@ -9,4 +9,6 @@ export default class BSBrandImage extends Component{
             </span>
         );
     }
-}
+});
+
+export default BSBrandImage;

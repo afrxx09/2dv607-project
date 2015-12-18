@@ -1,7 +1,5 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -18,56 +16,37 @@ var _bsBrandImage2 = _interopRequireDefault(_bsBrandImage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var BSBrand = (function (_Component) {
-    _inherits(BSBrand, _Component);
-
-    function BSBrand() {
-        _classCallCheck(this, BSBrand);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSBrand).apply(this, arguments));
-    }
-
-    _createClass(BSBrand, [{
-        key: 'render',
-        value: function render() {
-            var brandOptions = this.props.opts,
-                navId = this.props.config.id,
-                brandHref = brandOptions.href || '',
-                brandTitle = brandOptions.title || '',
-                imageOpts = brandOptions.image,
-                brandImage = imageOpts ? _react2.default.createElement(_bsBrandImage2.default, { opts: imageOpts, title: brandTitle }) : null;
-            return _react2.default.createElement(
-                'div',
-                { className: 'navbar-header' },
+var BSBrand = _react2.default.createComponent({
+    render: function render() {
+        var brandOptions = this.props.opts,
+            navId = this.props.config.id,
+            brandHref = brandOptions.href || '',
+            brandTitle = brandOptions.title || '',
+            imageOpts = brandOptions.image,
+            brandImage = imageOpts ? _react2.default.createElement(_bsBrandImage2.default, { opts: imageOpts, title: brandTitle }) : null;
+        return _react2.default.createElement(
+            'div',
+            { className: 'navbar-header' },
+            _react2.default.createElement(
+                'button',
+                { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#' + navId },
                 _react2.default.createElement(
-                    'button',
-                    { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#' + navId },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'sr-only' },
-                        'Toggle navigation'
-                    ),
-                    _react2.default.createElement('span', { className: 'icon-bar' }),
-                    _react2.default.createElement('span', { className: 'icon-bar' }),
-                    _react2.default.createElement('span', { className: 'icon-bar' })
+                    'span',
+                    { className: 'sr-only' },
+                    'Toggle navigation'
                 ),
-                _react2.default.createElement(
-                    _reactRouter.Link,
-                    { to: brandHref, className: 'navbar-brand' },
-                    brandImage,
-                    brandTitle
-                )
-            );
-        }
-    }]);
-
-    return BSBrand;
-})(_react.Component);
+                _react2.default.createElement('span', { className: 'icon-bar' }),
+                _react2.default.createElement('span', { className: 'icon-bar' }),
+                _react2.default.createElement('span', { className: 'icon-bar' })
+            ),
+            _react2.default.createElement(
+                _reactRouter.Link,
+                { to: brandHref, className: 'navbar-brand' },
+                brandImage,
+                brandTitle
+            )
+        );
+    }
+});
 
 exports.default = BSBrand;

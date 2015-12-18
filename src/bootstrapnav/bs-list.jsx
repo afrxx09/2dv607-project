@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import BSListItem from './bs-list-item';
 
-export default class BSList extends Component{
+const BSList = React.createComponent({
     render(){
         let props = this.props,
             listItems = props.links.map(function(link, n){
-            return <BSListItem key={n} link={link} config={props.config}/>
-        }),
+                return <BSListItem key={n} link={link} config={props.config}/>
+            }),
             classes = props.rootNav ? 'nav navbar-nav' : 'dropdown-menu';
         return (
             <ul className={classes}>
@@ -14,4 +14,6 @@ export default class BSList extends Component{
             </ul>
         );
     }
-};
+});
+
+export default BSList;

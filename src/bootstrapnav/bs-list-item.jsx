@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import BSList from './bs-list';
 
-export default class BSListItem extends Component{
+const BSListItem = React.createComponent({
     render(){
         let props = this.props,
             title = props.link.title,
@@ -25,4 +25,6 @@ export default class BSListItem extends Component{
             </li>
         );
     }
-};
+});
+
+export default BSListItem;

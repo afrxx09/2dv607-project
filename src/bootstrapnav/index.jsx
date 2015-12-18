@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import BSList from './bs-list';
 import BSBrand from './bs-brand';
 
-export default class BSNav extends Component{
+const BSNav = React.createClass({
     getBrandImage(ImageOptions, brandTitle){
         if(ImageOptions){
             let src = ImageOptions.src;
@@ -14,7 +14,7 @@ export default class BSNav extends Component{
             );
         }
         return null;
-    }
+    },
     render(){
         let props = this.props,
             config = props.config,
@@ -35,4 +35,6 @@ export default class BSNav extends Component{
             </nav>
         );
     }
-};
+});
+
+export default BSNav;

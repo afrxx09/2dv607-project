@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import BSBrandImage from './bs-brand-image';
 
-export default class BSBrand extends Component{
+const BSBrand = React.createComponent({
     render(){
         let brandOptions = this.props.opts,
             navId = this.props.config.id,
@@ -27,4 +27,6 @@ export default class BSBrand extends Component{
             </div>
         )
     }
-}
+});
+
+export default BSBrand;

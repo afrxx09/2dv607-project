@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import List from './list';
 
-export default class VanillaNav extends Component{
+const VanillaNav = React.createClass({
     render(){
         return (
             <div id={this.props.config.id}>
@@ -9,4 +9,6 @@ export default class VanillaNav extends Component{
             </div>
         );
     }
-};
+});
+
+export default VanillaNav;
