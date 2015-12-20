@@ -828,99 +828,97 @@ module.exports = parseLinks;
 },{}],12:[function(require,module,exports){
 'use strict';
 
-var _react = require('react');
+var React = require('react'),
+    ReactRouter = require('react-router'),
+    Router = ReactRouter.Router,
+    Route = ReactRouter.Route,
+    IndexRoute = ReactRouter.IndexRoute,
+    Link = ReactRouter.Link,
+    render = require('react-dom').render;
 
-var _react2 = _interopRequireDefault(_react);
+var AsdNav = require('./../../../dist/index.js').AsdNav;
 
-var _reactDom = require('react-dom');
-
-var _reactRouter = require('react-router');
-
-var _index = require('./../../../dist/index.js');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var App = _react2.default.createClass({
+var App = React.createClass({
     displayName: 'App',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'div',
             { id: 'wrap' },
-            _react2.default.createElement(
+            React.createElement(
                 'h1',
                 null,
                 'App'
             ),
-            _react2.default.createElement(_index.AsdNav, { routes: this.props.routes }),
+            React.createElement(AsdNav, { routes: this.props.routes }),
             this.props.children
         );
     }
 });
 
-var Home = _react2.default.createClass({
+var Home = React.createClass({
     displayName: 'Home',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Home'
         );
     }
 });
-var Info1 = _react2.default.createClass({
+var Info1 = React.createClass({
     displayName: 'Info1',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Info 1'
         );
     }
 });
-var Info2 = _react2.default.createClass({
+var Info2 = React.createClass({
     displayName: 'Info2',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Info 2'
         );
     }
 });
-var Info3 = _react2.default.createClass({
+var Info3 = React.createClass({
     displayName: 'Info3',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Info 3'
         );
     }
 });
-var About = _react2.default.createClass({
+var About = React.createClass({
     displayName: 'About',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'About'
         );
     }
 });
-var Contact1 = _react2.default.createClass({
+var Contact1 = React.createClass({
     displayName: 'Contact1',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Contact 1'
         );
     }
 });
-var Contact2 = _react2.default.createClass({
+var Contact2 = React.createClass({
     displayName: 'Contact2',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Contact 2'
@@ -928,43 +926,43 @@ var Contact2 = _react2.default.createClass({
     }
 });
 
-var Members = _react2.default.createClass({
+var Members = React.createClass({
     displayName: 'Members',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'div',
             null,
-            _react2.default.createElement(
+            React.createElement(
                 'h2',
                 null,
                 'Members'
             ),
-            _react2.default.createElement(
+            React.createElement(
                 'ul',
                 null,
-                _react2.default.createElement(
+                React.createElement(
                     'li',
                     null,
-                    _react2.default.createElement(
-                        _reactRouter.Link,
+                    React.createElement(
+                        Link,
                         { to: '/members/1' },
                         'Memeber 1'
                     )
                 ),
-                _react2.default.createElement(
+                React.createElement(
                     'li',
                     null,
-                    _react2.default.createElement(
-                        _reactRouter.Link,
+                    React.createElement(
+                        Link,
                         { to: '/members/2' },
                         'Memeber 2'
                     )
                 ),
-                _react2.default.createElement(
+                React.createElement(
                     'li',
                     null,
-                    _react2.default.createElement(
-                        _reactRouter.Link,
+                    React.createElement(
+                        Link,
                         { to: '/members/3' },
                         'Memeber 3'
                     )
@@ -975,12 +973,11 @@ var Members = _react2.default.createClass({
     }
 });
 
-var Member = _react2.default.createClass({
+var Member = React.createClass({
     displayName: 'Member',
     render: function render() {
         var id = this.props.params.id;
-
-        return _react2.default.createElement(
+        return React.createElement(
             'h3',
             null,
             'Member id: ',
@@ -989,12 +986,11 @@ var Member = _react2.default.createClass({
     }
 });
 
-var User = _react2.default.createClass({
+var User = React.createClass({
     displayName: 'User',
     render: function render() {
         var userId = this.props.params.userId;
-
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'User id: ',
@@ -1003,10 +999,10 @@ var User = _react2.default.createClass({
     }
 });
 
-var TopFriends = _react2.default.createClass({
+var TopFriends = React.createClass({
     displayName: 'TopFriends',
     render: function render() {
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Top Friends'
@@ -1014,12 +1010,11 @@ var TopFriends = _react2.default.createClass({
     }
 });
 
-var Friend = _react2.default.createClass({
+var Friend = React.createClass({
     displayName: 'Friend',
     render: function render() {
         var friendId = this.props.params.friendId;
-
-        return _react2.default.createElement(
+        return React.createElement(
             'h2',
             null,
             'Friend id: ',
@@ -1028,48 +1023,48 @@ var Friend = _react2.default.createClass({
     }
 });
 
-(0, _reactDom.render)(_react2.default.createElement(
-    _reactRouter.Router,
+render(React.createElement(
+    Router,
     null,
-    _react2.default.createElement(
-        _reactRouter.Route,
+    React.createElement(
+        Route,
         { path: '/', component: App },
-        _react2.default.createElement(_reactRouter.IndexRoute, { component: Home, title: 'da home' }),
-        _react2.default.createElement(
-            _reactRouter.Route,
+        React.createElement(IndexRoute, { component: Home, title: 'da home' }),
+        React.createElement(
+            Route,
             { path: 'info' },
-            _react2.default.createElement(_reactRouter.IndexRoute, { component: Info1 }),
-            _react2.default.createElement(_reactRouter.Route, { path: 'i2', component: Info2, title: 'asd 2s' }),
-            _react2.default.createElement(_reactRouter.Route, { path: 'i3', component: Info3 })
+            React.createElement(IndexRoute, { component: Info1 }),
+            React.createElement(Route, { path: 'i2', component: Info2, title: 'asd 2s' }),
+            React.createElement(Route, { path: 'i3', component: Info3 })
         ),
-        _react2.default.createElement(_reactRouter.Route, { path: 'about', component: About, title: 'Abt' }),
-        _react2.default.createElement(
-            _reactRouter.Route,
+        React.createElement(Route, { path: 'about', component: About, title: 'Abt' }),
+        React.createElement(
+            Route,
             null,
-            _react2.default.createElement(_reactRouter.Route, { path: 'conact1', component: Contact1 }),
-            _react2.default.createElement(_reactRouter.Route, { path: 'conact2', component: Contact2 })
+            React.createElement(Route, { path: 'conact1', component: Contact1 }),
+            React.createElement(Route, { path: 'conact2', component: Contact2 })
         ),
-        _react2.default.createElement(
-            _reactRouter.Route,
+        React.createElement(
+            Route,
             { path: 'members', component: Members },
-            _react2.default.createElement(_reactRouter.Route, { path: ':id', component: Member })
+            React.createElement(Route, { path: ':id', component: Member })
         ),
-        _react2.default.createElement(
-            _reactRouter.Route,
+        React.createElement(
+            Route,
             { path: 'users' },
-            _react2.default.createElement(_reactRouter.Route, { path: ':userId', component: User })
+            React.createElement(Route, { path: ':userId', component: User })
         ),
-        _react2.default.createElement(
-            _reactRouter.Route,
+        React.createElement(
+            Route,
             { path: 'friends' },
-            _react2.default.createElement(_reactRouter.Route, { path: 'top-friends', component: TopFriends }),
-            _react2.default.createElement(_reactRouter.Route, { path: ':friendId', component: Friend })
+            React.createElement(Route, { path: 'top-friends', component: TopFriends }),
+            React.createElement(Route, { path: ':friendId', component: Friend })
         ),
-        _react2.default.createElement(
-            _reactRouter.Route,
+        React.createElement(
+            Route,
             { path: 'hidden' },
-            _react2.default.createElement(_reactRouter.Route, { hide: true }),
-            _react2.default.createElement(_reactRouter.Route, { path: 'not-hidden', title: 'not hidden', component: Contact1, hide: false })
+            React.createElement(Route, { hide: true }),
+            React.createElement(Route, { path: 'not-hidden', title: 'not hidden', component: Contact1, hide: false })
         )
     )
 ), document.getElementById('app'));

@@ -1,8 +1,7 @@
 import React from 'react';
 import ListItem from './list-item';
 
-
-const List = React.createClass({
+class List extends React.Component {
     render(){
         let config = this.props.config;
         let listItems = this.props.links.map(function(link, n){
@@ -12,6 +11,6 @@ const List = React.createClass({
             <ul>{listItems}</ul>
         );
     }
-});
+}
 
 export default List;

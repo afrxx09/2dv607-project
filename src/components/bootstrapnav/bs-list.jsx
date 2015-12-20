@@ -1,7 +1,7 @@
 import React from 'react';
 import BSListItem from './bs-list-item';
 
-const BSList = React.createComponent({
+class BSList extends React.Component {
     render(){
         let props = this.props,
             listItems = props.links.map(function(link, n){
@@ -14,6 +14,6 @@ const BSList = React.createComponent({
             </ul>
         );
     }
-});
+}
 
 export default BSList;

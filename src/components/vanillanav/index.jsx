@@ -1,7 +1,7 @@
 import React from 'react';
 import List from './list';
 
-const VanillaNav = React.createClass({
+class VanillaNav extends React.Component {
     render(){
         return (
             <div id={this.props.config.id}>
@@ -9,6 +9,6 @@ const VanillaNav = React.createClass({
             </div>
         );
     }
-});
+};
 
 export default VanillaNav;

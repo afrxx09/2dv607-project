@@ -37,7 +37,7 @@ Set up a React Router with a root path and component just like normal.
 In the root(app/wrap) component, simply add the AsdNav where you wish to have your navigation rendered and pass on the routes using `this.props.routes`.
 
 ```
-import AsdNav from 'asd-nav';
+import { AsdNav } from 'asd-nav';
 const App = React.createClass({
     render(){
         return(
@@ -174,7 +174,7 @@ It is possible to pass a config object to the AsdNav component for some addition
 Create an Object with the config settings and pass it to AsdNav with the config-attribute.
 
 ```
-import AsdNav from 'asd-nav';
+import { AsdNav } from 'asd-nav';
 const App = React.createClass({
     render(){
         let myNavConfig = {

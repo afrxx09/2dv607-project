@@ -1,75 +1,68 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, IndexRoute, Link } from 'react-router';
-import { AsdNav } from './../../../dist/index.js';
+var React = require('react'),
+    ReactRouter = require('react-router'),
+    Router = ReactRouter.Router,
+    Route = ReactRouter.Route,
+    IndexRoute = ReactRouter.IndexRoute,
+    Link = ReactRouter.Link,
+    render = require('react-dom').render;
 
-const App = React.createClass({
+var AsdNav = require('./../../../dist/index.js').AsdNav;
+
+var App = React.createClass({
     render(){
-        let myNavConf = {
-            bootstrap: {
-                brand: {
-                    href: '/',
-                    title: 'MyNav Example',
-                    image: {
-                        src: 'img/React.js_logo.svg.png'
-                    }
-                }
-            }
-        };
-
         return(
             <div id="wrap">
                 <h1>App</h1>
-                <AsdNav routes={this.props.routes} config={myNavConf}/>
+                <AsdNav routes={this.props.routes}/>
                 {this.props.children}
             </div>
         );
     }
 });
 
-const Home = React.createClass({
+var Home = React.createClass({
     render(){
         return(
             <h2>Home</h2>
         );
     }
 });
-const Info1 = React.createClass({
+var Info1 = React.createClass({
     render(){
         return(
             <h2>Info 1</h2>
         );
     }
 });
-const Info2 = React.createClass({
+var Info2 = React.createClass({
     render(){
         return(
             <h2>Info 2</h2>
         );
     }
 });
-const Info3 = React.createClass({
+var Info3 = React.createClass({
     render(){
         return(
             <h2>Info 3</h2>
         );
     }
 });
-const About = React.createClass({
+var About = React.createClass({
     render(){
         return(
             <h2>About</h2>
         );
     }
 });
-const Contact1 = React.createClass({
+var Contact1 = React.createClass({
     render(){
         return(
             <h2>Contact 1</h2>
         );
     }
 });
-const Contact2 = React.createClass({
+var Contact2 = React.createClass({
     render(){
         return(
             <h2>Contact 2</h2>
@@ -77,7 +70,7 @@ const Contact2 = React.createClass({
     }
 });
 
-const Members = React.createClass({
+var Members = React.createClass({
     render(){
         return(
             <div>
@@ -93,25 +86,25 @@ const Members = React.createClass({
     }
 });
 
-const Member = React.createClass({
+var Member = React.createClass({
     render(){
-        let { id } = this.props.params
+        var id = this.props.params.id;
         return(
             <h3>Member id: {id}</h3>
         );
     }
 });
 
-const User = React.createClass({
+var User = React.createClass({
     render(){
-        let { userId } = this.props.params
+        var userId = this.props.params.userId;
         return(
             <h2>User id: {userId}</h2>
         );
     }
 });
 
-const TopFriends = React.createClass({
+var TopFriends = React.createClass({
     render(){
         return(
             <h2>Top Friends</h2>
@@ -119,9 +112,9 @@ const TopFriends = React.createClass({
     }
 });
 
-const Friend = React.createClass({
+var Friend = React.createClass({
     render(){
-        let { friendId } = this.props.params
+        var friendId = this.props.params.friendId;
         return(
             <h2>Friend id: {friendId}</h2>
         );
