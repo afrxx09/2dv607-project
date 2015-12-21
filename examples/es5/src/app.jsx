@@ -6,7 +6,7 @@ var React = require('react'),
     Link = ReactRouter.Link,
     render = require('react-dom').render;
 
-var AsdNav = require('./../../../dist/index.js').AsdNav;
+var AsdNav = require('./../../../dist/index.js');
 
 var App = React.createClass({
     render(){

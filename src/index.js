@@ -1,1 +1,3 @@
-export { default as AsdNav } from './components/index';
+import AsdNav from './components/index';
+
+module.exports = AsdNav;

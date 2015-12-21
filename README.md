@@ -37,7 +37,11 @@ Set up a React Router with a root path and component just like normal.
 In the root(app/wrap) component, simply add the AsdNav where you wish to have your navigation rendered and pass on the routes using `this.props.routes`.
 
 ```
-import { AsdNav } from 'asd-nav';
+import AsdNav from 'asd-nav';
+/*
+*   for es5
+var AsdNav = require('asd-nav');
+*/
 const App = React.createClass({
     render(){
         return(
@@ -174,7 +178,7 @@ It is possible to pass a config object to the AsdNav component for some addition
 Create an Object with the config settings and pass it to AsdNav with the config-attribute.
 
 ```
-import { AsdNav } from 'asd-nav';
+import AsdNav from 'asd-nav';
 const App = React.createClass({
     render(){
         let myNavConfig = {
@@ -210,3 +214,11 @@ Renders the DOM with bootstrap structure and classes. This requires bootstrap cs
 [Run Bootstrap example](http://afrxx09.github.io/2dv607-project/examples/bootstrap/)
 
 [Bootstrap example code](https://github.com/afrxx09/2dv607-project/tree/gh-pages/examples/bootstrap)
+
+### ES5 Vanilla example
+
+This examples is written in es5 style and has not css at all.
+
+[Run es5 example](http://afrxx09.github.io/2dv607-project/examples/es5/)
+
+[es5 example code](https://github.com/afrxx09/2dv607-project/tree/gh-pages/examples/es5)
