@@ -120,9 +120,19 @@ render(
     <Router>
         <Route path='/' component={App}>
             <IndexRoute component={Home} title="da home"/>
+            
+            <Route path="/members/">
+                <IndexRoute component={Members} />
+                <Route path="/member/:id" component={Member} />
+            </Route>
+            <Route path="/membs">
+                <IndexRoute component={Members} />
+                <Route path="/mem/:id" component={Member} />
+            </Route>
+            
             <Route path='info'>
                 <IndexRoute component={Info1}/>
-                <Route path='i2' component={Info2} title="asd 2s"/>
+                <Route path='i2' component={Info2} title="nfo"/>
                 <Route path='i3' component={Info3}/>
             </Route>
             <Route path='about' component={About} title='Abt' />

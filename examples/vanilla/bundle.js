@@ -737,26 +737,33 @@ module.exports = _index2.default;
 },{"./components/index":6}],11:[function(require,module,exports){
 'use strict';
 
-function hasChildIndexRoute(children) {
+function getIndexRouteFromChildren(children) {
     if (children) {
         for (var i = 0; i < children.length; i++) {
             if (children[i].isIndex) {
-                return true;
+                return children[i];
             }
         }
     }
-    return false;
+    return null;
 }
 
+/**
+*   TODO: Clean this mess up
+*/
 function getHref(path, parentPath) {
-    parentPath = parentPath ? parentPath + '/' : '';
+    if (path && path.indexOf('/') === 0) {
+        parentPath = '/';
+    } else {
+        parentPath = parentPath ? parentPath + '/' : '';
+    }
     /*
         Not pretty, problem:
         Index routes has no path so their parentPath becomes the path,
         regular child routes(of root) would later also add their parent path resulting in a double slash.
     */
-    parentPath = parentPath.replace('//', '/');
-    return !path ? null : parentPath + path;
+    path = !path ? null : parentPath + path;
+    return !path ? null : path.replace('//', '/');
 }
 
 function getTitle(node) {
@@ -766,27 +773,45 @@ function getTitle(node) {
 
 function getChildren(node, href) {
     if (node.childRoutes) {
-        var children = parseLinks(node, href);
+        var children = parseLinks(node);
         if (children.length) {
             return children;
         }
     }
-    return null;
+    return [];
 }
 
+/**
+*   TODO: Clean this mess up
+*/
 function createLink(node, parentPath) {
     if (node.hide) {
         return null;
     }
     var href = getHref(node.path, parentPath),
-        children = getChildren(node, href);
-    //Has no component, should not render as link
+        title = getTitle(node),
+        children = getChildren(node, href),
+        indexRoute = getIndexRouteFromChildren(children),
+        hasIndexRoute = indexRoute !== null;
+
     if (!node.component) {
-        href = null;
-    }
-    //no component nor children should not be rendered
-    if (!node.component && !children) {
-        return null;
+        //no component
+        if (!children.length) {
+            //no children
+            return null; //don't render
+        }
+
+        if (hasIndexRoute) {
+            children.splice(children.indexOf(indexRoute), 1); //remove indexroute from children
+            if (!node.title) {
+                //node has no title attr
+                title = getTitle(indexRoute); //take title from index route instead
+            }
+        }
+        if (children.length) {
+            //if there are children after index is removed
+            href = null; //do not make a link
+        }
     }
     //Parameter routes ignored, should not be renderd
     if (href && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)) {
@@ -795,24 +820,24 @@ function createLink(node, parentPath) {
     return {
         isIndex: false,
         href: href,
-        title: getTitle(node),
+        title: title,
         children: children
     };
 }
 
-var parseLinks = function parseLinks(routes, parentPath) {
+var parseLinks = function parseLinks(routes) {
     var indexRoute = routes.indexRoute || null,
         childRoutes = routes.childRoutes || [],
         links = [];
     if (indexRoute) {
         links.push({
             isIndex: true,
-            href: getHref(parentPath),
+            href: getHref(routes.path),
             title: getTitle(indexRoute)
         });
     }
     for (var i = 0; i < childRoutes.length; i++) {
-        var link = createLink(childRoutes[i], parentPath);
+        var link = createLink(childRoutes[i], routes.path);
         if (link !== null) {
             links.push(link);
         }
@@ -1036,9 +1061,21 @@ var Friend = _react2.default.createClass({
         _react2.default.createElement(_reactRouter.IndexRoute, { component: Home, title: 'da home' }),
         _react2.default.createElement(
             _reactRouter.Route,
+            { path: '/members/' },
+            _react2.default.createElement(_reactRouter.IndexRoute, { component: Members }),
+            _react2.default.createElement(_reactRouter.Route, { path: '/member/:id', component: Member })
+        ),
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: '/membs' },
+            _react2.default.createElement(_reactRouter.IndexRoute, { component: Members }),
+            _react2.default.createElement(_reactRouter.Route, { path: '/mem/:id', component: Member })
+        ),
+        _react2.default.createElement(
+            _reactRouter.Route,
             { path: 'info' },
             _react2.default.createElement(_reactRouter.IndexRoute, { component: Info1 }),
-            _react2.default.createElement(_reactRouter.Route, { path: 'i2', component: Info2, title: 'asd 2s' }),
+            _react2.default.createElement(_reactRouter.Route, { path: 'i2', component: Info2, title: 'nfo' }),
             _react2.default.createElement(_reactRouter.Route, { path: 'i3', component: Info3 })
         ),
         _react2.default.createElement(_reactRouter.Route, { path: 'about', component: About, title: 'Abt' }),
