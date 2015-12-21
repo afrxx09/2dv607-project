@@ -1,10 +1,15 @@
 'use strict';
 
+/**
+*   returns Index route from the children if it is found, also removes it from the children array so that it only 
+*   contains "real" children.
+*/
 function getIndexRouteFromChildren(children) {
     if (children) {
         for (var i = 0; i < children.length; i++) {
             if (children[i].isIndex) {
-                return children[i];
+                var indexRoute = children.splice(children.indexOf(i), 1); //remove indexroute from children
+                return indexRoute[0];
             }
         }
     }
@@ -34,6 +39,10 @@ function getTitle(node) {
     return node.title || comp.displayName || comp.name || 'Un-named link';
 }
 
+/**
+*   Returns all children that are "real" link routes.
+*   Not: hidden or parameter routes
+*/
 function getChildren(node, href) {
     if (node.childRoutes) {
         var children = parseLinks(node);
@@ -45,37 +54,26 @@ function getChildren(node, href) {
 }
 
 /**
-*   TODO: Clean this mess up
+*   Reads the information of the node(route) to determine if a link should be created from it. 
 */
 function createLink(node, parentPath) {
     if (node.hide) {
         return null;
     }
-    var href = getHref(node.path, parentPath),
-        title = getTitle(node),
-        children = getChildren(node, href),
-        indexRoute = getIndexRouteFromChildren(children),
-        hasIndexRoute = indexRoute !== null;
+    var children = getChildren(node, href),
+        //all children(inc. index route)
+    indexRoute = getIndexRouteFromChildren(children),
+        //also removes index route from children arr
+    hasIndexRoute = indexRoute !== null;
 
-    if (!node.component) {
-        //no component
-        if (!children.length) {
-            //no children
-            return null; //don't render
-        }
-
-        if (hasIndexRoute) {
-            children.splice(children.indexOf(indexRoute), 1); //remove indexroute from children
-            if (!node.title) {
-                //node has no title attr
-                title = getTitle(indexRoute); //take title from index route instead
-            }
-        }
-        if (children.length) {
-            //if there are children after index is removed
-            href = null; //do not make a link
-        }
+    if (!node.component && !children.length && !hasIndexRoute) {
+        return null;
     }
+    //If no component, but has children, should not be a link
+    var href = !node.component && children.length ? null : getHref(node.path, parentPath);
+    //Use index route for title if there is no component nor title on the node
+    var title = !node.component && !node.title && hasIndexRoute ? getTitle(indexRoute) : getTitle(node);
+
     //Parameter routes ignored, should not be renderd
     if (href && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)) {
         return null;
@@ -87,7 +85,10 @@ function createLink(node, parentPath) {
         children: children
     };
 }
-
+/**
+*   recursively goes through child routes(normally starts with children of root) to determine what routes should be 
+*   rendered as links 
+*/
 var parseLinks = function parseLinks(routes) {
     var indexRoute = routes.indexRoute || null,
         childRoutes = routes.childRoutes || [],
