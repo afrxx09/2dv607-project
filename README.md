@@ -152,13 +152,21 @@ It is possible to pass a config object to the AsdNav component for some addition
 
 **bootstrap.type**: string, bootstrap menu types: "navbar-fixed-top" etc.
 
-**bootstrap.brand**: Object, Options fot the bootstrap menu brand.
+**bootstrap.brand**: Object, Options for the bootstrap menu brand.
 
 **bootstrap.brand.href**: string, Path for brand link.
 
 **bootstrap.brand.title**: string, Text for brand link.
 
 **bootstrap.brand.image**: string, Path for brand image.
+
+**components**: Object, allows for overriding the default components.
+
+**components.Nav**: Component, A component to use instead of the default Nav component.
+
+**components.List**: Component, A component to use instead of the default List component.
+
+**components.ListItem**: Component, A component to use instead of the default ListItem component.
 
 ```
 {
@@ -197,7 +205,7 @@ const App = React.createClass({
 
 ## Examples
 
-Some runable examples with code to check out it can be used.
+Some runnable examples with code to check out it can be used.
 
 ### Vanilla example
 

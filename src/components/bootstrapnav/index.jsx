@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import BSList from './bs-list';
 import BSBrand from './bs-brand';
 
 class BSNav extends React.Component {
@@ -30,7 +29,7 @@ class BSNav extends React.Component {
                 <div className='container-fluid'>
                     {brand}
                     <div id={config.id} className='collapse navbar-collapse'>
-                        <BSList config={config} links={props.links} rootNav={true}/>
+                        {this.props.children}
                     </div>
                 </div>
             </nav>

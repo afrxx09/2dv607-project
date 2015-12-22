@@ -12,10 +12,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _bsList = require('./bs-list');
-
-var _bsList2 = _interopRequireDefault(_bsList);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39,7 +35,8 @@ var BSListItem = (function (_React$Component) {
             var props = this.props,
                 title = props.link.title,
                 href = props.link.href || '',
-                children = props.link.children;
+                children = props.link.children,
+                List = this.props.config.components.List;
 
             if (children && children.length) {
                 return _react2.default.createElement(
@@ -52,7 +49,7 @@ var BSListItem = (function (_React$Component) {
                         ' ',
                         _react2.default.createElement('span', { className: 'caret' })
                     ),
-                    _react2.default.createElement(_bsList2.default, { links: children, config: props.config })
+                    _react2.default.createElement(List, { links: children })
                 );
             }
             return _react2.default.createElement(
