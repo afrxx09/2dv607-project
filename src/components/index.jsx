@@ -39,7 +39,7 @@ class AsdNav extends React.Component {
         config.components.Nav = config.components.Nav || defaultComponents.Nav;
         config.components.ListItem = config.components.ListItem || defaultComponents.ListItem;
         let List = config.components.List || defaultComponents.List;
-        let ListFactory = (props) => {
+        let ListFactory = (props) => { 
             let {links, ...props} = props;
             let ListItem = config.components.ListItem;
             let listItems = links.map(
