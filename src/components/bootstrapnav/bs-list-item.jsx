@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
-import BSList from './bs-list';
 
 class BSListItem extends React.Component {
     render(){
         let props = this.props,
             title = props.link.title,
             href = props.link.href || '',
-            children = props.link.children;
+            children = props.link.children,
+            List = this.props.config.components.List;
 
         if(children && children.length){
             return (
@@ -15,7 +15,7 @@ class BSListItem extends React.Component {
                     <Link to={href} className='dropdown-toggle' data-toggle='dropdown'>
                         {title} <span className="caret"></span>
                     </Link>
-                    <BSList links={children} config={props.config}/>
+                    <List links={children} />
                 </li>
             );
         }

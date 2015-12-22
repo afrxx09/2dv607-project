@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import List from './list';
 
 class ListItem extends React.Component {
     getLink(href, title){
@@ -12,7 +11,8 @@ class ListItem extends React.Component {
 
     getSubList(children){
         if(children && children.length){
-            return <List config={this.props.config} links={children}/>;
+            let List = this.props.config.components.List;
+            return <List links={children} />;
         }
         return null;
     }

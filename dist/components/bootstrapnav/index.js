@@ -12,10 +12,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _bsList = require('./bs-list');
-
-var _bsList2 = _interopRequireDefault(_bsList);
-
 var _bsBrand = require('./bs-brand');
 
 var _bsBrand2 = _interopRequireDefault(_bsBrand);
@@ -69,7 +65,7 @@ var BSNav = (function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { id: config.id, className: 'collapse navbar-collapse' },
-                        _react2.default.createElement(_bsList2.default, { config: config, links: props.links, rootNav: true })
+                        this.props.children
                     )
                 )
             );

@@ -168,10 +168,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _bsList = require('./bs-list');
-
-var _bsList2 = _interopRequireDefault(_bsList);
-
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
 }
@@ -209,10 +205,11 @@ var BSListItem = (function (_React$Component) {
             var props = this.props,
                 title = props.link.title,
                 href = props.link.href || '',
-                children = props.link.children;
+                children = props.link.children,
+                List = this.props.config.components.List;
 
             if (children && children.length) {
-                return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(_bsList2.default, { links: children, config: props.config }));
+                return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(List, { links: children }));
             }
             return _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: href }, title));
         }
@@ -223,7 +220,7 @@ var BSListItem = (function (_React$Component) {
 
 exports.default = BSListItem;
 
-},{"./bs-list":4,"react":218,"react-router":85}],4:[function(require,module,exports){
+},{"react":218,"react-router":85}],4:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
@@ -245,10 +242,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _bsListItem = require('./bs-list-item');
-
-var _bsListItem2 = _interopRequireDefault(_bsListItem);
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
@@ -285,11 +278,8 @@ var BSList = (function (_React$Component) {
         key: 'render',
         value: function render() {
             var props = this.props,
-                listItems = props.links.map(function (link, n) {
-                return _react2.default.createElement(_bsListItem2.default, { key: n, link: link, config: props.config });
-            }),
                 classes = props.rootNav ? 'nav navbar-nav' : 'dropdown-menu';
-            return _react2.default.createElement('ul', { className: classes }, listItems);
+            return _react2.default.createElement('ul', { className: classes }, props.listItems);
         }
     }]);
 
@@ -298,7 +288,7 @@ var BSList = (function (_React$Component) {
 
 exports.default = BSList;
 
-},{"./bs-list-item":3,"react":218}],5:[function(require,module,exports){
+},{"react":218}],5:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
@@ -322,10 +312,6 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
-
-var _bsList = require('./bs-list');
-
-var _bsList2 = _interopRequireDefault(_bsList);
 
 var _bsBrand = require('./bs-brand');
 
@@ -380,7 +366,7 @@ var BSNav = (function (_React$Component) {
                 BSClassNames = 'navbar navbar-default ' + type,
                 brandOpts = config.bootstrap.brand,
                 brand = brandOpts ? _react2.default.createElement(_bsBrand2.default, { config: config, opts: brandOpts }) : null;
-            return _react2.default.createElement('nav', { className: BSClassNames }, _react2.default.createElement('div', { className: 'container-fluid' }, brand, _react2.default.createElement('div', { id: config.id, className: 'collapse navbar-collapse' }, _react2.default.createElement(_bsList2.default, { config: config, links: props.links, rootNav: true }))));
+            return _react2.default.createElement('nav', { className: BSClassNames }, _react2.default.createElement('div', { className: 'container-fluid' }, brand, _react2.default.createElement('div', { id: config.id, className: 'collapse navbar-collapse' }, this.props.children)));
         }
     }]);
 
@@ -389,10 +375,20 @@ var BSNav = (function (_React$Component) {
 
 exports.default = BSNav;
 
-},{"./bs-brand":2,"./bs-list":4,"react":218,"react-router":85}],6:[function(require,module,exports){
+},{"./bs-brand":2,"react":218,"react-router":85}],6:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }return target;
+};
 
 var _createClass = (function () {
     function defineProperties(target, props) {
@@ -416,9 +412,25 @@ var _bootstrapnav = require('./bootstrapnav');
 
 var _bootstrapnav2 = _interopRequireDefault(_bootstrapnav);
 
+var _bsList = require('./bootstrapnav/bs-list');
+
+var _bsList2 = _interopRequireDefault(_bsList);
+
+var _bsListItem = require('./bootstrapnav/bs-list-item');
+
+var _bsListItem2 = _interopRequireDefault(_bsListItem);
+
 var _vanillanav = require('./vanillanav');
 
 var _vanillanav2 = _interopRequireDefault(_vanillanav);
+
+var _list = require('./vanillanav/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _listItem = require('./vanillanav/list-item');
+
+var _listItem2 = _interopRequireDefault(_listItem);
 
 var _routesParser = require('../utils/routes-parser');
 
@@ -426,6 +438,12 @@ var _routesParser2 = _interopRequireDefault(_routesParser);
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _objectWithoutProperties(obj, keys) {
+    var target = {};for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+    }return target;
 }
 
 function _classCallCheck(instance, Constructor) {
@@ -473,8 +491,34 @@ var AsdNav = (function (_React$Component) {
             if (!config.id) {
                 config.id = DEFAULT_NAV_ID;
             }
-            var Nav = config.bootstrap ? _bootstrapnav2.default : _vanillanav2.default;
-            return _react2.default.createElement(Nav, { config: config, links: links });
+            var defaultComponents = config.bootstrap ? {
+                Nav: _bootstrapnav2.default,
+                List: _bsList2.default,
+                ListItem: _bsListItem2.default
+            } : {
+                Nav: _vanillanav2.default,
+                List: _list2.default,
+                ListItem: _listItem2.default
+            };
+            config.components = config.components ? Object.create(config.components) : {};
+            config.components.Nav = config.components.Nav || defaultComponents.Nav;
+            config.components.ListItem = config.components.ListItem || defaultComponents.ListItem;
+            var List = config.components.List || defaultComponents.List;
+            var ListFactory = function ListFactory(props) {
+                var links = props.links;
+
+                var props = _objectWithoutProperties(props, ['links']);
+
+                var ListItem = config.components.ListItem;
+                var listItems = links.map(function (link, key) {
+                    return _react2.default.createElement(ListItem, { link: link, key: key, config: config });
+                });
+
+                return _react2.default.createElement(List, _extends({ listItems: listItems }, props));
+            };
+            config.components.List = ListFactory;
+            var Nav = config.components.Nav;
+            return _react2.default.createElement(Nav, { config: config }, _react2.default.createElement(ListFactory, { links: links, rootNav: true }));
         }
     }]);
 
@@ -483,7 +527,7 @@ var AsdNav = (function (_React$Component) {
 
 exports.default = AsdNav;
 
-},{"../utils/routes-parser":11,"./bootstrapnav":5,"./vanillanav":7,"react":218}],7:[function(require,module,exports){
+},{"../utils/routes-parser":11,"./bootstrapnav":5,"./bootstrapnav/bs-list":4,"./bootstrapnav/bs-list-item":3,"./vanillanav":7,"./vanillanav/list":9,"./vanillanav/list-item":8,"react":218}],7:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
@@ -505,10 +549,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _list = require('./list');
-
-var _list2 = _interopRequireDefault(_list);
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
@@ -544,7 +584,7 @@ var VanillaNav = (function (_React$Component) {
     _createClass(VanillaNav, [{
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', { id: this.props.config.id }, _react2.default.createElement(_list2.default, { config: this.props.config, links: this.props.links }));
+            return _react2.default.createElement('div', { id: this.props.config.id }, this.props.children);
         }
     }]);
 
@@ -555,7 +595,7 @@ var VanillaNav = (function (_React$Component) {
 
 exports.default = VanillaNav;
 
-},{"./list":9,"react":218}],8:[function(require,module,exports){
+},{"react":218}],8:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
@@ -579,10 +619,6 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
-
-var _list = require('./list');
-
-var _list2 = _interopRequireDefault(_list);
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
@@ -627,7 +663,8 @@ var ListItem = (function (_React$Component) {
         key: 'getSubList',
         value: function getSubList(children) {
             if (children && children.length) {
-                return _react2.default.createElement(_list2.default, { config: this.props.config, links: children });
+                var List = this.props.config.components.List;
+                return _react2.default.createElement(List, { links: children });
             }
             return null;
         }
@@ -647,7 +684,7 @@ var ListItem = (function (_React$Component) {
 
 exports.default = ListItem;
 
-},{"./list":9,"react":218,"react-router":85}],9:[function(require,module,exports){
+},{"react":218,"react-router":85}],9:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
@@ -669,10 +706,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _listItem = require('./list-item');
-
-var _listItem2 = _interopRequireDefault(_listItem);
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
@@ -708,11 +741,7 @@ var List = (function (_React$Component) {
     _createClass(List, [{
         key: 'render',
         value: function render() {
-            var config = this.props.config;
-            var listItems = this.props.links.map(function (link, n) {
-                return _react2.default.createElement(_listItem2.default, { key: n, link: link, config: config });
-            });
-            return _react2.default.createElement('ul', null, listItems);
+            return _react2.default.createElement('ul', null, this.props.listItems);
         }
     }]);
 
@@ -721,7 +750,7 @@ var List = (function (_React$Component) {
 
 exports.default = List;
 
-},{"./list-item":8,"react":218}],10:[function(require,module,exports){
+},{"react":218}],10:[function(require,module,exports){
 'use strict';
 
 var _index = require('./components/index');
