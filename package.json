@@ -41,7 +41,7 @@
   },
   "scripts": {
     "build": "babel --presets es2015,react,stage-1 -d lib/ src/",
-    "test": "mocha test/unit --recursive --compilers js:babel-core/register",
+    "test": "mocha test/unit --recursive --compilers js:babel-core/register --inline-diffs",
     "integration" : "npm run build &&  mocha test/integration --recursive --compilers js:babel-core/register",
     "system" : "npm run build && mocha test/system --recursive --compilers js:babel-core/register",
     "demos": "npm run demo && npm run demo-es5 && npm run demo-bs",
