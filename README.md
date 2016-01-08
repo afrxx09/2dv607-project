@@ -226,7 +226,16 @@ Renders the DOM with bootstrap structure and classes. This requires bootstrap cs
 ### ES5 Vanilla example
 
 This examples is written in es5 style and has not css at all.
+Contributed by: [Jesper Håkansson](https://github.com/drager)
 
 [Run es5 example](http://afrxx09.github.io/2dv607-project/examples/es5/)
 
 [es5 example code](https://github.com/afrxx09/2dv607-project/tree/gh-pages/examples/es5)
+
+### Materialize example(under dev)
+
+Contributed by: [Erik Magnusson](https://github.com/em222iv)
+
+[Run es5 example](http://afrxx09.github.io/2dv607-project/examples/materialize/)
+
+[es5 example code](https://github.com/afrxx09/2dv607-project/tree/gh-pages/examples/materialize)
