@@ -1,9 +1,9 @@
 import React from 'react';
 
-import BSNav from '../components/bootstrapnav';
+import BSNav from '../components/bootstrapnav/bs-nav';
 import BSList from '../components/bootstrapnav/bs-list';
 import BSListItem from '../components/bootstrapnav/bs-list-item';
-import VanillaNav from '../components/vanillanav';
+import VanillaNav from '../components/vanillanav/nav';
 import VanillaList from '../components/vanillanav/list';
 import VanillaListItem from '../components/vanillanav/list-item';
 

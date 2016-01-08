@@ -1,3 +1,3 @@
-import AsdNav from './components/index';
+import AsdNav from './components/asd-nav';
 
 module.exports = AsdNav;

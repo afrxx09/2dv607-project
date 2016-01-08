@@ -2,7 +2,7 @@
   "name": "asd-nav",
   "description": "Navigation component that reads routes from React Router to render a nested html-list of links.",
   "version": "0.0.6",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afrxx09/2dv607-project.git"
@@ -32,16 +32,20 @@
     "babel-preset-stage-1": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
+    "chai": "^3.4.1",
     "eslint": "^1.6.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.11.3",
+    "mocha": "^2.3.4",
     "react-addons-test-utils": "^0.14.3"
   },
   "scripts": {
-    "build": "babel src -i --out-dir dist",
+    "build": "babel --presets es2015,react,stage-1 -d lib/ src/",
+    "test": "mocha test/unit --recursive --compilers js:babel-core/register",
+    "integration" : "npm run build &&  mocha test/integration --recursive --compilers js:babel-core/register",
+    "system" : "npm run build && mocha test/system --recursive --compilers js:babel-core/register",
     "demos": "npm run demo && npm run demo-es5 && npm run demo-bs",
     "demo": "browserify examples/vanilla/src/app.jsx -o examples/vanilla/bundle.js -t [ babelify --presets [ es2015 react ] ]",
-    
     "demo-es5": "browserify examples/es5/src/app.jsx -o examples/es5/bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "demo-bs": "browserify examples/bootstrap/src/app.jsx -o examples/bootstrap/bundle.js -t [ babelify --presets [ es2015 react ] ]"
   }

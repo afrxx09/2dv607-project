@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, Link } from 'react-router'
-import AsdNav from './../../../dist/index.js';
+import AsdNav from './../../../lib/index.js';
 
 const App = React.createClass({
     render(){

@@ -1,917 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var BSBrandImage = (function (_React$Component) {
-    _inherits(BSBrandImage, _React$Component);
-
-    function BSBrandImage() {
-        _classCallCheck(this, BSBrandImage);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSBrandImage).apply(this, arguments));
-    }
-
-    _createClass(BSBrandImage, [{
-        key: 'render',
-        value: function render() {
-            var imageOptions = this.props.opts;
-            return _react2.default.createElement('span', null, _react2.default.createElement('img', { src: imageOptions.src, alt: this.props.title }));
-        }
-    }]);
-
-    return BSBrandImage;
-})(_react2.default.Component);
-
-exports.default = BSBrandImage;
-
-},{"react":219}],2:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-var _bsBrandImage = require('./bs-brand-image');
-
-var _bsBrandImage2 = _interopRequireDefault(_bsBrandImage);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var BSBrand = (function (_React$Component) {
-    _inherits(BSBrand, _React$Component);
-
-    function BSBrand() {
-        _classCallCheck(this, BSBrand);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSBrand).apply(this, arguments));
-    }
-
-    _createClass(BSBrand, [{
-        key: 'render',
-        value: function render() {
-            var brandOptions = this.props.opts,
-                navId = this.props.config.id,
-                brandHref = brandOptions.href || '',
-                brandTitle = brandOptions.title || '',
-                imageOpts = brandOptions.image,
-                brandImage = imageOpts ? _react2.default.createElement(_bsBrandImage2.default, { opts: imageOpts, title: brandTitle }) : null;
-            return _react2.default.createElement('div', { className: 'navbar-header' }, _react2.default.createElement('button', { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#' + navId }, _react2.default.createElement('span', { className: 'sr-only' }, 'Toggle navigation'), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' })), _react2.default.createElement(_reactRouter.Link, { to: brandHref, className: 'navbar-brand' }, brandImage, brandTitle));
-        }
-    }]);
-
-    return BSBrand;
-})(_react2.default.Component);
-
-exports.default = BSBrand;
-
-},{"./bs-brand-image":1,"react":219,"react-router":86}],3:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var BSListItem = (function (_React$Component) {
-    _inherits(BSListItem, _React$Component);
-
-    function BSListItem() {
-        _classCallCheck(this, BSListItem);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSListItem).apply(this, arguments));
-    }
-
-    _createClass(BSListItem, [{
-        key: 'render',
-        value: function render() {
-            var props = this.props,
-                title = props.link.title,
-                href = props.link.href || '',
-                children = props.link.children,
-                List = this.props.config.components.List;
-
-            if (children && children.length) {
-                return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(List, { links: children }));
-            }
-            return _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: href }, title));
-        }
-    }]);
-
-    return BSListItem;
-})(_react2.default.Component);
-
-exports.default = BSListItem;
-
-},{"react":219,"react-router":86}],4:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var BSList = (function (_React$Component) {
-    _inherits(BSList, _React$Component);
-
-    function BSList() {
-        _classCallCheck(this, BSList);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSList).apply(this, arguments));
-    }
-
-    _createClass(BSList, [{
-        key: 'render',
-        value: function render() {
-            var props = this.props,
-                classes = props.rootNav ? 'nav navbar-nav' : 'dropdown-menu';
-            return _react2.default.createElement('ul', { className: classes }, props.listItems);
-        }
-    }]);
-
-    return BSList;
-})(_react2.default.Component);
-
-exports.default = BSList;
-
-},{"react":219}],5:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-var _bsBrand = require('./bs-brand');
-
-var _bsBrand2 = _interopRequireDefault(_bsBrand);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var BSNav = (function (_React$Component) {
-    _inherits(BSNav, _React$Component);
-
-    function BSNav() {
-        _classCallCheck(this, BSNav);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSNav).apply(this, arguments));
-    }
-
-    _createClass(BSNav, [{
-        key: 'getBrandImage',
-        value: function getBrandImage(ImageOptions, brandTitle) {
-            if (ImageOptions) {
-                var src = ImageOptions.src;
-                return _react2.default.createElement('span', null, _react2.default.createElement('img', { src: src, alt: brandTitle }));
-            }
-            return null;
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var props = this.props,
-                config = props.config,
-                type = config.bootstrap.type || '',
-                BSClassNames = 'navbar navbar-default ' + type,
-                brandOpts = config.bootstrap.brand,
-                brand = brandOpts ? _react2.default.createElement(_bsBrand2.default, { config: config, opts: brandOpts }) : null;
-            return _react2.default.createElement('nav', { className: BSClassNames }, _react2.default.createElement('div', { className: 'container-fluid' }, brand, _react2.default.createElement('div', { id: config.id, className: 'collapse navbar-collapse' }, this.props.children)));
-        }
-    }]);
-
-    return BSNav;
-})(_react2.default.Component);
-
-exports.default = BSNav;
-
-},{"./bs-brand":2,"react":219,"react-router":86}],6:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _config = require('../utils/config');
-
-var _routesParser = require('../utils/routes-parser');
-
-var _routesParser2 = _interopRequireDefault(_routesParser);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var AsdNav = (function (_React$Component) {
-    _inherits(AsdNav, _React$Component);
-
-    function AsdNav() {
-        _classCallCheck(this, AsdNav);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(AsdNav).apply(this, arguments));
-    }
-
-    _createClass(AsdNav, [{
-        key: 'getLinks',
-        value: function getLinks(routes) {
-            if (routes && routes.length) {
-                return (0, _routesParser2.default)(routes[0]);
-            }
-            return [];
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var links = this.getLinks(this.props.routes),
-                config = (0, _config.setDefaultValues)(this.props.config);
-            var _config$components = config.components;
-            var Nav = _config$components.Nav;
-            var List = _config$components.List;
-
-            return _react2.default.createElement(Nav, { config: config }, _react2.default.createElement(List, { links: links, rootNav: true }));
-        }
-    }]);
-
-    return AsdNav;
-})(_react2.default.Component);
-
-exports.default = AsdNav;
-
-},{"../utils/config":11,"../utils/routes-parser":12,"react":219}],7:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var VanillaNav = (function (_React$Component) {
-    _inherits(VanillaNav, _React$Component);
-
-    function VanillaNav() {
-        _classCallCheck(this, VanillaNav);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(VanillaNav).apply(this, arguments));
-    }
-
-    _createClass(VanillaNav, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement('div', { id: this.props.config.id }, this.props.children);
-        }
-    }]);
-
-    return VanillaNav;
-})(_react2.default.Component);
-
-;
-
-exports.default = VanillaNav;
-
-},{"react":219}],8:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var ListItem = (function (_React$Component) {
-    _inherits(ListItem, _React$Component);
-
-    function ListItem() {
-        _classCallCheck(this, ListItem);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).apply(this, arguments));
-    }
-
-    _createClass(ListItem, [{
-        key: 'getLink',
-        value: function getLink(href, title) {
-            if (href) {
-                return _react2.default.createElement(_reactRouter.Link, { to: href }, title);
-            }
-            return title;
-        }
-    }, {
-        key: 'getSubList',
-        value: function getSubList(children) {
-            if (children && children.length) {
-                var List = this.props.config.components.List;
-                return _react2.default.createElement(List, { links: children });
-            }
-            return null;
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var link = this.getLink(this.props.link.href, this.props.link.title),
-                subList = this.getSubList(this.props.link.children);
-            return _react2.default.createElement('li', null, link, subList);
-        }
-    }]);
-
-    return ListItem;
-})(_react2.default.Component);
-
-;
-
-exports.default = ListItem;
-
-},{"react":219,"react-router":86}],9:[function(require,module,exports){
-'use strict';
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-var _createClass = (function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-})();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
-
-function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var List = (function (_React$Component) {
-    _inherits(List, _React$Component);
-
-    function List() {
-        _classCallCheck(this, List);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
-    }
-
-    _createClass(List, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement('ul', null, this.props.listItems);
-        }
-    }]);
-
-    return List;
-})(_react2.default.Component);
-
-exports.default = List;
-
-},{"react":219}],10:[function(require,module,exports){
-'use strict';
-
-var _index = require('./components/index');
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-module.exports = _index2.default;
-
-},{"./components/index":6}],11:[function(require,module,exports){
-'use strict';
-
-var _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];for (var key in source) {
-            if (Object.prototype.hasOwnProperty.call(source, key)) {
-                target[key] = source[key];
-            }
-        }
-    }return target;
-};
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.setDefaultValues = setDefaultValues;
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _bootstrapnav = require('../components/bootstrapnav');
-
-var _bootstrapnav2 = _interopRequireDefault(_bootstrapnav);
-
-var _bsList = require('../components/bootstrapnav/bs-list');
-
-var _bsList2 = _interopRequireDefault(_bsList);
-
-var _bsListItem = require('../components/bootstrapnav/bs-list-item');
-
-var _bsListItem2 = _interopRequireDefault(_bsListItem);
-
-var _vanillanav = require('../components/vanillanav');
-
-var _vanillanav2 = _interopRequireDefault(_vanillanav);
-
-var _list = require('../components/vanillanav/list');
-
-var _list2 = _interopRequireDefault(_list);
-
-var _listItem = require('../components/vanillanav/list-item');
-
-var _listItem2 = _interopRequireDefault(_listItem);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _objectWithoutProperties(obj, keys) {
-    var target = {};for (var i in obj) {
-        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
-    }return target;
-}
-
-var DEFAULT_NAV_ID = 'asd-nav';
-var bootstrapComponents = {
-    Nav: _bootstrapnav2.default,
-    List: _bsList2.default,
-    ListItem: _bsListItem2.default
-};
-var vanillaComponents = {
-    Nav: _vanillanav2.default,
-    List: _list2.default,
-    ListItem: _listItem2.default
-};
-
-function setDefaultValues() {
-    var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-    config.id = config.id || DEFAULT_NAV_ID;
-
-    var defaultComponents = config.bootstrap ? bootstrapComponents : vanillaComponents;
-    config.components = config.components || {};
-    config.components.Nav = config.components.Nav || defaultComponents.Nav;
-    config.components.ListItem = config.components.ListItem || defaultComponents.ListItem;
-    var List = config.components.List || defaultComponents.List;
-    var ListFactory = function ListFactory(props) {
-        var links = props.links;
-
-        var props = _objectWithoutProperties(props, ['links']);
-
-        var ListItem = config.components.ListItem;
-        var listItems = links.map(function (link, key) {
-            return _react2.default.createElement(ListItem, { link: link, key: key, config: config });
-        });
-
-        return _react2.default.createElement(List, _extends({ listItems: listItems }, props));
-    };
-    config.components.List = ListFactory;
-
-    return config;
-}
-
-},{"../components/bootstrapnav":5,"../components/bootstrapnav/bs-list":4,"../components/bootstrapnav/bs-list-item":3,"../components/vanillanav":7,"../components/vanillanav/list":9,"../components/vanillanav/list-item":8,"react":219}],12:[function(require,module,exports){
-'use strict';
-
-/**
-*   returns Index route from the children if it is found, also removes it from the children array so that it only 
-*   contains "real" children.
-*/
-
-function getIndexRouteFromChildren(children) {
-    if (children) {
-        for (var i = 0; i < children.length; i++) {
-            if (children[i].isIndex) {
-                var indexRoute = children.splice(children.indexOf(i), 1); //remove indexroute from children
-                return indexRoute[0];
-            }
-        }
-    }
-    return null;
-}
-
-/**
-*   TODO: Clean this mess up
-*/
-function getHref(path, parentPath) {
-    if (path && path.indexOf('/') === 0) {
-        parentPath = '/';
-    } else {
-        parentPath = parentPath ? parentPath + '/' : '';
-    }
-    /*
-        Not pretty, problem:
-        Index routes has no path so their parentPath becomes the path,
-        regular child routes(of root) would later also add their parent path resulting in a double slash.
-    */
-    path = !path ? null : parentPath + path;
-    return !path ? null : path.replace('//', '/');
-}
-
-function getTitle(node) {
-    var comp = node.component || {};
-    return node.title || comp.displayName || comp.name || 'Un-named link';
-}
-
-/**
-*   Returns all children that are "real" link routes.
-*   Not: hidden or parameter routes
-*/
-function getChildren(node, href) {
-    if (node.childRoutes) {
-        var children = parseLinks(node);
-        if (children.length) {
-            return children;
-        }
-    }
-    return [];
-}
-
-/**
-*   Reads the information of the node(route) to determine if a link should be created from it. 
-*/
-function createLink(node, parentPath) {
-    if (node.hide) {
-        return null;
-    }
-    var children = getChildren(node, href),
-
-    //all children(inc. index route)
-    indexRoute = getIndexRouteFromChildren(children),
-
-    //also removes index route from children arr
-    hasIndexRoute = indexRoute !== null;
-
-    if (!node.component && !children.length && !hasIndexRoute) {
-        return null;
-    }
-    //If no component, but has children, should not be a link
-    var href = !node.component && children.length ? null : getHref(node.path, parentPath);
-    //Use index route for title if there is no component nor title on the node
-    var title = !node.component && !node.title && hasIndexRoute ? getTitle(indexRoute) : getTitle(node);
-
-    //Parameter routes ignored, should not be renderd
-    if (href && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)) {
-        return null;
-    }
-    return {
-        isIndex: false,
-        href: href,
-        title: title,
-        children: children
-    };
-}
-/**
-*   recursively goes through child routes(normally starts with children of root) to determine what routes should be 
-*   rendered as links 
-*/
-var parseLinks = function parseLinks(routes) {
-    var indexRoute = routes.indexRoute || null,
-        childRoutes = routes.childRoutes || [],
-        links = [];
-    if (indexRoute) {
-        links.push({
-            isIndex: true,
-            href: getHref(routes.path),
-            title: getTitle(indexRoute)
-        });
-    }
-    for (var i = 0; i < childRoutes.length; i++) {
-        var link = createLink(childRoutes[i], routes.path);
-        if (link !== null) {
-            links.push(link);
-        }
-    }
-    return links;
-};
-
-module.exports = parseLinks;
-
-},{}],13:[function(require,module,exports){
-'use strict';
-
 var React = require('react'),
     ReactRouter = require('react-router'),
     Router = ReactRouter.Router,
@@ -920,7 +9,7 @@ var React = require('react'),
     Link = ReactRouter.Link,
     render = require('react-dom').render;
 
-var AsdNav = require('./../../../dist/index.js');
+var AsdNav = require('./../../../lib/index.js');
 
 var App = React.createClass({
     displayName: 'App',
@@ -1165,7 +254,918 @@ render(React.createElement(
     )
 ), document.getElementById('app'));
 
-},{"./../../../dist/index.js":10,"react":219,"react-dom":66,"react-router":86}],14:[function(require,module,exports){
+},{"./../../../lib/index.js":11,"react":219,"react-dom":66,"react-router":86}],2:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _config = require('../utils/config');
+
+var _routesParser = require('../utils/routes-parser');
+
+var _routesParser2 = _interopRequireDefault(_routesParser);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var AsdNav = (function (_React$Component) {
+    _inherits(AsdNav, _React$Component);
+
+    function AsdNav() {
+        _classCallCheck(this, AsdNav);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(AsdNav).apply(this, arguments));
+    }
+
+    _createClass(AsdNav, [{
+        key: 'getLinks',
+        value: function getLinks(routes) {
+            if (routes && routes.length) {
+                return (0, _routesParser2.default)(routes[0]);
+            }
+            return [];
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var links = this.getLinks(this.props.routes),
+                config = (0, _config.setDefaultValues)(this.props.config);
+            var _config$components = config.components;
+            var Nav = _config$components.Nav;
+            var List = _config$components.List;
+
+            return _react2.default.createElement(Nav, { config: config }, _react2.default.createElement(List, { links: links, rootNav: true }));
+        }
+    }]);
+
+    return AsdNav;
+})(_react2.default.Component);
+
+exports.default = AsdNav;
+
+},{"../utils/config":12,"../utils/routes-parser":13,"react":219}],3:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var BSBrandImage = (function (_React$Component) {
+    _inherits(BSBrandImage, _React$Component);
+
+    function BSBrandImage() {
+        _classCallCheck(this, BSBrandImage);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSBrandImage).apply(this, arguments));
+    }
+
+    _createClass(BSBrandImage, [{
+        key: 'render',
+        value: function render() {
+            var imageOptions = this.props.opts;
+            return _react2.default.createElement('span', null, _react2.default.createElement('img', { src: imageOptions.src, alt: this.props.title }));
+        }
+    }]);
+
+    return BSBrandImage;
+})(_react2.default.Component);
+
+exports.default = BSBrandImage;
+
+},{"react":219}],4:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _bsBrandImage = require('./bs-brand-image');
+
+var _bsBrandImage2 = _interopRequireDefault(_bsBrandImage);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var BSBrand = (function (_React$Component) {
+    _inherits(BSBrand, _React$Component);
+
+    function BSBrand() {
+        _classCallCheck(this, BSBrand);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSBrand).apply(this, arguments));
+    }
+
+    _createClass(BSBrand, [{
+        key: 'render',
+        value: function render() {
+            var brandOptions = this.props.opts,
+                navId = this.props.config.id,
+                brandHref = brandOptions.href || '',
+                brandTitle = brandOptions.title || '',
+                imageOpts = brandOptions.image,
+                brandImage = imageOpts ? _react2.default.createElement(_bsBrandImage2.default, { opts: imageOpts, title: brandTitle }) : null;
+            return _react2.default.createElement('div', { className: 'navbar-header' }, _react2.default.createElement('button', { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#' + navId }, _react2.default.createElement('span', { className: 'sr-only' }, 'Toggle navigation'), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' }), _react2.default.createElement('span', { className: 'icon-bar' })), _react2.default.createElement(_reactRouter.Link, { to: brandHref, className: 'navbar-brand' }, brandImage, brandTitle));
+        }
+    }]);
+
+    return BSBrand;
+})(_react2.default.Component);
+
+exports.default = BSBrand;
+
+},{"./bs-brand-image":3,"react":219,"react-router":86}],5:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var BSListItem = (function (_React$Component) {
+    _inherits(BSListItem, _React$Component);
+
+    function BSListItem() {
+        _classCallCheck(this, BSListItem);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSListItem).apply(this, arguments));
+    }
+
+    _createClass(BSListItem, [{
+        key: 'render',
+        value: function render() {
+            var props = this.props,
+                title = props.link.title,
+                href = props.link.href || '',
+                children = props.link.children,
+                List = this.props.config.components.List;
+
+            if (children && children.length) {
+                return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(List, { links: children }));
+            }
+            return _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: href }, title));
+        }
+    }]);
+
+    return BSListItem;
+})(_react2.default.Component);
+
+exports.default = BSListItem;
+
+},{"react":219,"react-router":86}],6:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var BSList = (function (_React$Component) {
+    _inherits(BSList, _React$Component);
+
+    function BSList() {
+        _classCallCheck(this, BSList);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSList).apply(this, arguments));
+    }
+
+    _createClass(BSList, [{
+        key: 'render',
+        value: function render() {
+            var props = this.props,
+                classes = props.rootNav ? 'nav navbar-nav' : 'dropdown-menu';
+            return _react2.default.createElement('ul', { className: classes }, props.listItems);
+        }
+    }]);
+
+    return BSList;
+})(_react2.default.Component);
+
+exports.default = BSList;
+
+},{"react":219}],7:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _bsBrand = require('./bs-brand');
+
+var _bsBrand2 = _interopRequireDefault(_bsBrand);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var BSNav = (function (_React$Component) {
+    _inherits(BSNav, _React$Component);
+
+    function BSNav() {
+        _classCallCheck(this, BSNav);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(BSNav).apply(this, arguments));
+    }
+
+    _createClass(BSNav, [{
+        key: 'getBrandImage',
+        value: function getBrandImage(ImageOptions, brandTitle) {
+            if (ImageOptions) {
+                var src = ImageOptions.src;
+                return _react2.default.createElement('span', null, _react2.default.createElement('img', { src: src, alt: brandTitle }));
+            }
+            return null;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var props = this.props,
+                config = props.config,
+                type = config.bootstrap.type || '',
+                BSClassNames = 'navbar navbar-default ' + type,
+                brandOpts = config.bootstrap.brand,
+                brand = brandOpts ? _react2.default.createElement(_bsBrand2.default, { config: config, opts: brandOpts }) : null;
+            return _react2.default.createElement('nav', { className: BSClassNames }, _react2.default.createElement('div', { className: 'container-fluid' }, brand, _react2.default.createElement('div', { id: config.id, className: 'collapse navbar-collapse' }, this.props.children)));
+        }
+    }]);
+
+    return BSNav;
+})(_react2.default.Component);
+
+exports.default = BSNav;
+
+},{"./bs-brand":4,"react":219,"react-router":86}],8:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var ListItem = (function (_React$Component) {
+    _inherits(ListItem, _React$Component);
+
+    function ListItem() {
+        _classCallCheck(this, ListItem);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).apply(this, arguments));
+    }
+
+    _createClass(ListItem, [{
+        key: 'getLink',
+        value: function getLink(href, title) {
+            if (href) {
+                return _react2.default.createElement(_reactRouter.Link, { to: href }, title);
+            }
+            return title;
+        }
+    }, {
+        key: 'getSubList',
+        value: function getSubList(children) {
+            if (children && children.length) {
+                var List = this.props.config.components.List;
+                return _react2.default.createElement(List, { links: children });
+            }
+            return null;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var link = this.getLink(this.props.link.href, this.props.link.title),
+                subList = this.getSubList(this.props.link.children);
+            return _react2.default.createElement('li', null, link, subList);
+        }
+    }]);
+
+    return ListItem;
+})(_react2.default.Component);
+
+;
+
+exports.default = ListItem;
+
+},{"react":219,"react-router":86}],9:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var List = (function (_React$Component) {
+    _inherits(List, _React$Component);
+
+    function List() {
+        _classCallCheck(this, List);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
+    }
+
+    _createClass(List, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement('ul', null, this.props.listItems);
+        }
+    }]);
+
+    return List;
+})(_react2.default.Component);
+
+exports.default = List;
+
+},{"react":219}],10:[function(require,module,exports){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+var _createClass = (function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+})();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var VanillaNav = (function (_React$Component) {
+    _inherits(VanillaNav, _React$Component);
+
+    function VanillaNav() {
+        _classCallCheck(this, VanillaNav);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(VanillaNav).apply(this, arguments));
+    }
+
+    _createClass(VanillaNav, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement('div', { id: this.props.config.id }, this.props.children);
+        }
+    }]);
+
+    return VanillaNav;
+})(_react2.default.Component);
+
+;
+
+exports.default = VanillaNav;
+
+},{"react":219}],11:[function(require,module,exports){
+'use strict';
+
+var _asdNav = require('./components/asd-nav');
+
+var _asdNav2 = _interopRequireDefault(_asdNav);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+module.exports = _asdNav2.default;
+
+},{"./components/asd-nav":2}],12:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }return target;
+};
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.setDefaultValues = setDefaultValues;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _bsNav = require('../components/bootstrapnav/bs-nav');
+
+var _bsNav2 = _interopRequireDefault(_bsNav);
+
+var _bsList = require('../components/bootstrapnav/bs-list');
+
+var _bsList2 = _interopRequireDefault(_bsList);
+
+var _bsListItem = require('../components/bootstrapnav/bs-list-item');
+
+var _bsListItem2 = _interopRequireDefault(_bsListItem);
+
+var _nav = require('../components/vanillanav/nav');
+
+var _nav2 = _interopRequireDefault(_nav);
+
+var _list = require('../components/vanillanav/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _listItem = require('../components/vanillanav/list-item');
+
+var _listItem2 = _interopRequireDefault(_listItem);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _objectWithoutProperties(obj, keys) {
+    var target = {};for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+    }return target;
+}
+
+var DEFAULT_NAV_ID = 'asd-nav';
+var bootstrapComponents = {
+    Nav: _bsNav2.default,
+    List: _bsList2.default,
+    ListItem: _bsListItem2.default
+};
+var vanillaComponents = {
+    Nav: _nav2.default,
+    List: _list2.default,
+    ListItem: _listItem2.default
+};
+
+function setDefaultValues() {
+    var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    config.id = config.id || DEFAULT_NAV_ID;
+
+    var defaultComponents = config.bootstrap ? bootstrapComponents : vanillaComponents;
+    config.components = config.components || {};
+    config.components.Nav = config.components.Nav || defaultComponents.Nav;
+    config.components.ListItem = config.components.ListItem || defaultComponents.ListItem;
+    var List = config.components.List || defaultComponents.List;
+    var ListFactory = function ListFactory(props) {
+        var links = props.links;
+
+        var props = _objectWithoutProperties(props, ['links']);
+
+        var ListItem = config.components.ListItem;
+        var listItems = links.map(function (link, key) {
+            return _react2.default.createElement(ListItem, { link: link, key: key, config: config });
+        });
+
+        return _react2.default.createElement(List, _extends({ listItems: listItems }, props));
+    };
+    config.components.List = ListFactory;
+
+    return config;
+}
+
+},{"../components/bootstrapnav/bs-list":6,"../components/bootstrapnav/bs-list-item":5,"../components/bootstrapnav/bs-nav":7,"../components/vanillanav/list":9,"../components/vanillanav/list-item":8,"../components/vanillanav/nav":10,"react":219}],13:[function(require,module,exports){
+'use strict';
+
+/**
+*   returns Index route from the children if it is found, also removes it from the children array so that it only 
+*   contains "real" children.
+*/
+
+function getIndexRouteFromChildren(children) {
+    if (children) {
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].isIndex) {
+                var indexRoute = children.splice(children.indexOf(i), 1); //remove indexroute from children
+                return indexRoute[0];
+            }
+        }
+    }
+    return null;
+}
+
+/**
+*   TODO: Clean this mess up
+*/
+function getHref(path, parentPath) {
+    if (path && path.indexOf('/') === 0) {
+        parentPath = '/';
+    } else {
+        parentPath = parentPath ? parentPath + '/' : '';
+    }
+    /*
+        Not pretty, problem:
+        Index routes has no path so their parentPath becomes the path,
+        regular child routes(of root) would later also add their parent path resulting in a double slash.
+    */
+    path = !path ? null : parentPath + path;
+    return !path ? null : path.replace('//', '/');
+}
+
+function getTitle(node) {
+    var comp = node.component || {};
+    return node.title || comp.displayName || comp.name || 'Un-named link';
+}
+
+/**
+*   Returns all children that are "real" link routes.
+*   Not: hidden or parameter routes
+*/
+function getChildren(node, href) {
+    if (node.childRoutes) {
+        var children = parseLinks(node);
+        if (children.length) {
+            return children;
+        }
+    }
+    return [];
+}
+
+/**
+*   Reads the information of the node(route) to determine if a link should be created from it. 
+*/
+function createLink(node, parentPath) {
+    if (node.hide) {
+        return null;
+    }
+    var children = getChildren(node, href),
+
+    //all children(inc. index route)
+    indexRoute = getIndexRouteFromChildren(children),
+
+    //also removes index route from children arr
+    hasIndexRoute = indexRoute !== null;
+
+    if (!node.component && !children.length && !hasIndexRoute) {
+        return null;
+    }
+    //If no component, but has children, should not be a link
+    var href = !node.component && children.length ? null : getHref(node.path, parentPath);
+    //Use index route for title if there is no component nor title on the node
+    var title = !node.component && !node.title && hasIndexRoute ? getTitle(indexRoute) : getTitle(node);
+
+    //Parameter routes ignored, should not be renderd
+    if (href && (href.indexOf(':') === 0 || href.indexOf('/:') !== -1)) {
+        return null;
+    }
+    return {
+        isIndex: false,
+        href: href,
+        title: title,
+        children: children
+    };
+}
+/**
+*   recursively goes through child routes(normally starts with children of root) to determine what routes should be 
+*   rendered as links 
+*/
+var parseLinks = function parseLinks(routes) {
+    var indexRoute = routes.indexRoute || null,
+        childRoutes = routes.childRoutes || [],
+        links = [];
+    if (indexRoute) {
+        links.push({
+            isIndex: true,
+            href: getHref(routes.path),
+            title: getTitle(indexRoute)
+        });
+    }
+    for (var i = 0; i < childRoutes.length; i++) {
+        var link = createLink(childRoutes[i], routes.path);
+        if (link !== null) {
+            links.push(link);
+        }
+    }
+    return links;
+};
+
+module.exports = parseLinks;
+
+},{}],14:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -24649,4 +24649,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":61}]},{},[13]);
+},{"_process":61}]},{},[1]);
