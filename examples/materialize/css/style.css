@@ -1,0 +1,55 @@
+html *{
+    margin:0;
+    padding:0;
+}
+
+.navbar-brand img{
+    width:23px;
+}
+
+#asd-nav ul{
+    position:relative;
+    list-style-type:none;
+}
+#asd-nav ul:before,
+#asd-nav ul:after{
+    content:" ";
+    display:table;
+}
+#asd-nav ul:after{
+    clear:both;
+}
+
+#asd-nav ul li{
+    float:left;
+    margin:1px;
+}
+
+#asd-nav ul li a,
+#asd-nav ul li span{
+    display:inline-block;
+}
+
+
+#asd-nav ul li a:hover,
+#asd-nav ul li span:hover{
+    cursor:pointer;
+}
+
+#asd-nav ul li ul{
+    display:none;
+    background-color:#ccc;
+}
+
+#asd-nav ul li:hover ul{
+    position:absolute;
+    display:block;
+}
+
+#asd-nav ul li:hover ul li{
+    float:none;
+    display: block;
+}
+#asd-nav ul li:hover ul li a{
+    display: block;
+}

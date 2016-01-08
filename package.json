@@ -47,6 +47,7 @@
     "demos": "npm run demo && npm run demo-es5 && npm run demo-bs",
     "demo": "browserify examples/vanilla/src/app.jsx -o examples/vanilla/bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "demo-es5": "browserify examples/es5/src/app.jsx -o examples/es5/bundle.js -t [ babelify --presets [ es2015 react ] ]",
-    "demo-bs": "browserify examples/bootstrap/src/app.jsx -o examples/bootstrap/bundle.js -t [ babelify --presets [ es2015 react ] ]"
+    "demo-bs": "browserify examples/bootstrap/src/app.jsx -o examples/bootstrap/bundle.js -t [ babelify --presets [ es2015 react ] ]",
+    "demo-mz": "browserify examples/materialize/src/app.jsx -o examples/materialize/bundle.js -t [ babelify --presets [ es2015 react ] ]"
   }
 }
