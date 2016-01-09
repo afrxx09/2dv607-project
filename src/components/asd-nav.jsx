@@ -1,7 +1,6 @@
 import React from 'react';
-
-import {setDefaultValues} from '../utils/config';
-import routesParser from '../utils/routes-parser';
+import { configFactory } from '../utils/config-factory';
+import { routesParser }  from '../utils/routes-parser';
 
 class AsdNav extends React.Component {
     getLinks(routes){
@@ -13,11 +12,11 @@ class AsdNav extends React.Component {
 
     render(){
         let links = this.getLinks(this.props.routes),
-            config = setDefaultValues(this.props.config);
+            config = configFactory(this.props.config);
         let {Nav, List} = config.components;
         return (
             <Nav config={config}>
-                <List links={links} rootNav={true} />
+                <List links={links} rootNav={true} config={config}/>
             </Nav>
         );
     }

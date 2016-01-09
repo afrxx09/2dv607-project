@@ -15,7 +15,7 @@ class BSListItem extends React.Component {
                     <Link to={href} className='dropdown-toggle' data-toggle='dropdown'>
                         {title} <span className="caret"></span>
                     </Link>
-                    <List links={children} />
+                    <List links={children} config={this.props.config}/>
                 </li>
             );
         }

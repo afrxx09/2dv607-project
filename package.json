@@ -40,11 +40,11 @@
     "react-addons-test-utils": "^0.14.3"
   },
   "scripts": {
-    "build": "babel --presets es2015,react,stage-1 -d lib/ src/",
+    "build": "babel --presets react,es2015,stage-1 -d lib/ src/",
     "test": "mocha test/unit --recursive --compilers js:babel-core/register --inline-diffs",
     "integration" : "npm run build &&  mocha test/integration --recursive --compilers js:babel-core/register",
     "system" : "npm run build && mocha test/system --recursive --compilers js:babel-core/register",
-    "demos": "npm run demo && npm run demo-es5 && npm run demo-bs",
+    "demos": "npm run demo && npm run demo-es5 && npm run demo-bs && npm run demo-mz",
     "demo": "browserify examples/vanilla/src/app.jsx -o examples/vanilla/bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "demo-es5": "browserify examples/es5/src/app.jsx -o examples/es5/bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "demo-bs": "browserify examples/bootstrap/src/app.jsx -o examples/bootstrap/bundle.js -t [ babelify --presets [ es2015 react ] ]",

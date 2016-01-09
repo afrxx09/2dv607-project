@@ -12,7 +12,7 @@ class ListItem extends React.Component {
     getSubList(children){
         if(children && children.length){
             let List = this.props.config.components.List;
-            return <List links={children} />;
+            return <List links={children} config={this.props.config}/>;
         }
         return null;
     }

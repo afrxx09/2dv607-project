@@ -19,7 +19,7 @@ const vanillaComponents = {
     ListItem: VanillaListItem,
 };
 
-export function setDefaultValues(config = {}) {
+export function configFactory(config = {}) {
     config.id = config.id || DEFAULT_NAV_ID;
 
     let defaultComponents = config.bootstrap
@@ -28,17 +28,6 @@ export function setDefaultValues(config = {}) {
     config.components = config.components || {};
     config.components.Nav = config.components.Nav || defaultComponents.Nav;
     config.components.ListItem = config.components.ListItem || defaultComponents.ListItem;
-    let List = config.components.List || defaultComponents.List;
-    let ListFactory = (props) => {
-        let {links, ...props} = props;
-        let ListItem = config.components.ListItem;
-        let listItems = links.map(
-            (link, key) => <ListItem link={link} key={key} config={config} />
-        );
-
-        return <List listItems={listItems} {...props} />;
-    };
-    config.components.List = ListFactory;
-
+    config.components.List = config.components.List || defaultComponents.List;;
     return config;
 }

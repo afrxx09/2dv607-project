@@ -44,7 +44,7 @@ function getTitle(node){
 */
 function getChildren(node, href){
     if(node.childRoutes){
-        let children = parseLinks(node);
+        let children = routesParser(node);
         if(children.length){
             return children;
         }
@@ -88,7 +88,7 @@ function createLink(node, parentPath){
 *   recursively goes through child routes(normally starts with children of root) to determine what routes should be 
 *   rendered as links 
 */
-var parseLinks = function(routes){
+export function routesParser(routes){
     let indexRoute = routes.indexRoute || null,
         childRoutes = routes.childRoutes || [],
         links = [];
@@ -107,5 +107,3 @@ var parseLinks = function(routes){
     }
     return links;
 };
-
-module.exports = parseLinks;
