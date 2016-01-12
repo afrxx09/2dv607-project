@@ -348,7 +348,7 @@ var AsdNav = (function (_React$Component) {
             var Nav = _config$components.Nav;
             var List = _config$components.List;
 
-            return _react2.default.createElement(Nav, { config: config }, _react2.default.createElement(List, { links: links, rootNav: true, config: config }));
+            return _react2.default.createElement(Nav, { config: config }, links && links.length ? _react2.default.createElement(List, { links: links, rootNav: true, config: config }) : null);
         }
     }]);
 
@@ -568,9 +568,9 @@ var BSListItem = (function (_React$Component) {
                 List = this.props.config.components.List;
 
             if (children && children.length) {
-                return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(List, { links: children, config: this.props.config }));
+                return _react2.default.createElement('li', { className: 'dropdown' }, _react2.default.createElement(_reactRouter.Link, { to: href, activeClassName: 'active', className: 'dropdown-toggle', 'data-toggle': 'dropdown' }, title, ' ', _react2.default.createElement('span', { className: 'caret' })), _react2.default.createElement(List, { links: children, config: this.props.config }));
             }
-            return _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: href }, title));
+            return _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: href, activeClassName: 'active' }, title));
         }
     }]);
 
@@ -796,7 +796,7 @@ var ListItem = (function (_React$Component) {
         key: 'getLink',
         value: function getLink(href, title) {
             if (href) {
-                return _react2.default.createElement(_reactRouter.Link, { to: href }, title);
+                return _react2.default.createElement(_reactRouter.Link, { to: href, activeClassName: 'active' }, title);
             }
             return title;
         }
@@ -885,7 +885,6 @@ var List = (function (_React$Component) {
         key: 'render',
         value: function render() {
             var listItems = (0, _listItemsFactory.listItemsFactory)(this.props.links, this.props.config);
-            console.log(listItems);
             return _react2.default.createElement('ul', null, listItems);
         }
     }]);

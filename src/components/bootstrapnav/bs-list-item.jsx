@@ -12,7 +12,7 @@ class BSListItem extends React.Component {
         if(children && children.length){
             return (
                 <li className='dropdown'>
-                    <Link to={href} className='dropdown-toggle' data-toggle='dropdown'>
+                    <Link to={href} activeClassName="active" className='dropdown-toggle' data-toggle='dropdown'>
                         {title} <span className="caret"></span>
                     </Link>
                     <List links={children} config={this.props.config}/>
@@ -21,7 +21,7 @@ class BSListItem extends React.Component {
         }
         return (
             <li>
-                <Link to={href}>{title}</Link>
+                <Link to={href} activeClassName="active">{title}</Link>
             </li>
         );
     }

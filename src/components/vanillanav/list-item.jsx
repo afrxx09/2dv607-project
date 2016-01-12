@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 class ListItem extends React.Component {
     getLink(href, title){
         if(href){
-            return <Link to={href}>{title}</Link>;
+            return <Link to={href} activeClassName="active">{title}</Link>;
         }
         return title;
     }

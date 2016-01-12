@@ -16,7 +16,7 @@ class AsdNav extends React.Component {
         let {Nav, List} = config.components;
         return (
             <Nav config={config}>
-                <List links={links} rootNav={true} config={config}/>
+                {links && links.length ? <List links={links} rootNav={true} config={config}/> : null}
             </Nav>
         );
     }
